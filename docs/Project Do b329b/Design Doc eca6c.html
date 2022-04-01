@@ -1,0 +1,671 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Design Documentation</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="eca6cb7c-200e-4049-b54d-4c51765ad985" class="page sans"><header><h1 class="page-title">Design Documentation</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Created</th><td><time>@October 21, 2021 6:33 PM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Last Edited Time</th><td><time>@January 10, 2022 8:20 AM</time></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Type</th><td><span class="selected-value select-value-color-blue">Technical Spec</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><td><span class="selected-value select-value-color-gray">Archived</span></td></tr><tr class="property-row property-row-created_by"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Created By</th><td></td></tr><tr class="property-row property-row-last_edited_by"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Last Edited By</th><td></td></tr><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesPerson"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Stakeholders</th><td></td></tr></tbody></table></header><div class="page-body"><h1 id="9a458549-5d60-4827-91f0-7ee424707931" class="">Table of Contents</h1><nav id="76693c9f-cb63-4135-b420-1a6d40fc0ece" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9a458549-5d60-4827-91f0-7ee424707931">Table of Contents</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6df79280-bd46-4a0e-b13f-7855f2240263">1. Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#73a000ed-9a87-4dad-b77a-75dd9c294324">2. System Architecture</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b41834b0-dfc3-48f3-9584-4bf7419e6526">2.1 System High-Level Architecture Diagram and Explanation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c262ff31-3ff8-48ba-8bc7-56bc5c8dd004">2.2 Component (Package) Diagram</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22bd905d-d71a-42ab-a93c-446cb94012ee">3. Low-Level Design</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1569f0a8-0913-41f5-acd0-0a5cef784cd1">3.1 Class Diagrams</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b0d30044-1da2-49f4-8c13-0823b78f1f1f">3.2 Sequence Diagrams</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#92b21187-1494-4a61-b845-46e52a22aef7">3.2.1 Diagram Containing All Use Cases </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f2e7fc2e-6c7e-400a-a2b6-13f30718e854">3.2.1.1 Use Case 1: Join Lobby</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#0ac8cbf1-8a46-4938-be4f-d530b2b2bbd9">3.2.1.2 Use Case 2: Create Lobby</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f64a8dbd-b9b1-4a04-bf6d-300f34dffd5b">3.2.1.3 Use Case 3: Tutorial</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#8910f992-645e-411d-9c7e-95c1a6b714e8">3.2.1.4 Use Case 4: Start a New Game</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#17720efc-9374-4624-ba7c-7089b08f9066">3.2.1.5 Use Case 5: New Monopoly Gameplay</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#754811f9-f0c8-4b85-8c02-236b51b0a191">3.2.1.6 Use Case 6: Finishing a Game</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2ac64071-1d93-4b9f-81f9-ec65fbe20e10">3.3 Data Flow Diagram</a></div></nav><h1 id="6df79280-bd46-4a0e-b13f-7855f2240263" class="">1. Introduction</h1><p id="687a3845-097d-4321-ba98-4be1bdb04767" class="">This is the Design Specification document for a new web-based game which is called New Monopoly. This new game design will comprehensively upgrade the current Monopoly game and enable its users to play on a web browser. This document describes the system architecture with system high-level architecture and components diagrams while also explaining the low-level design of the game using class, sequence, and data flow diagrams.</p><h1 id="73a000ed-9a87-4dad-b77a-75dd9c294324" class="">2. System Architecture</h1><h2 id="b41834b0-dfc3-48f3-9584-4bf7419e6526" class="">2.1 System High-Level Architecture Diagram and Explanation</h2><p id="0cbed18b-a40a-4eb9-bf0e-ba112711a3cb" class="">
+</p><figure id="2250e15f-66f4-44a2-b428-490310b9ecec" class="image"><a href="Design%20Doc%20eca6c/System_Architecture_NewMonopoly.drawio.png"><img style="width:821px" src="Design%20Doc%20eca6c/System_Architecture_NewMonopoly.drawio.png"/></a></figure><ul id="72a0b877-7022-478a-bef7-48c5ffaa66d9" class="bulleted-list"><li style="list-style-type:disc">The above diagram shows the System High-Level Architecture Diagram for our New Monopoly Game. The diagram is explained step by step below.</li></ul><ul id="ef4916de-48bc-429f-8d7f-bf4b24082808" class="bulleted-list"><li style="list-style-type:disc">Clients are players, whose numbers can change between 1 to 6.</li></ul><ul id="e5efa656-18bb-46a4-9291-23876ee08643" class="bulleted-list"><li style="list-style-type:disc">Clients send their current status i.e. player info to the database.</li></ul><ul id="9948f0a3-1bdb-4eed-9da4-ca0b4d7a314d" class="bulleted-list"><li style="list-style-type:disc">Information of all players is sent synchronously to the database.</li></ul><ul id="9c2f561b-80d8-4ac6-91f2-b1c0cc12eca6" class="bulleted-list"><li style="list-style-type:disc">The database contains session data.</li></ul><ul id="43a85232-ee43-4504-a5f7-d761cfea760a" class="bulleted-list"><li style="list-style-type:disc">Database updates the game status of a game session.</li></ul><ul id="dccc9bc0-b0f3-48b4-98f6-f8aba8940143" class="bulleted-list"><li style="list-style-type:disc">Database updates the inflation rate and exchange rates between currencies of the bank.</li></ul><ul id="bf51a950-733f-499c-ab1b-3b9dd3956908" class="bulleted-list"><li style="list-style-type:disc">The server contains the information of the game session and the bank.</li></ul><ul id="cd7c10cc-02b6-4648-a738-c4b9e5cfb8f0" class="bulleted-list"><li style="list-style-type:disc">The server sends the current status i.e. game info to all clients.</li></ul><ul id="aa6d9068-aca9-4825-95d7-7fdd99cfd3ad" class="bulleted-list"><li style="list-style-type:disc">This whole process is kept throughout the duration of the game.</li></ul><h2 id="c262ff31-3ff8-48ba-8bc7-56bc5c8dd004" class="">2.2 Component (Package) Diagram</h2><p id="2ccbd25a-6da5-4903-a0fe-28400c09adb0" class="">
+</p><figure id="efe19f56-ee5f-4ee5-b458-0eeef0708427" class="image"><a href="Design%20Doc%20eca6c/componentDiagram_NewMonopoly.drawio.png"><img style="width:672px" src="Design%20Doc%20eca6c/componentDiagram_NewMonopoly.drawio.png"/></a></figure><p id="4a4769e7-a2dd-4d23-91d3-6a9d55bb23b6" class="">
+</p><ul id="d524a336-188c-4fb0-b6b1-d32d88bb6b6d" class="bulleted-list"><li style="list-style-type:disc">The above diagram shows Component Diagram for our New Monopoly Game. Each relationship between components is explained in detail below.</li></ul><ul id="19a131ce-d820-4ae6-a878-ead243e9fb62" class="bulleted-list"><li style="list-style-type:disc">Session Data is the main database that holds the current session’s data.<ul id="d22f6846-7146-4e20-913f-d04f4b74a659" class="bulleted-list"><li style="list-style-type:circle">Session Data provides the players’ information to Game Session Component</li></ul></li></ul><ul id="3b48eaf6-4fad-47c3-914e-5ebad6bcc9dd" class="bulleted-list"><li style="list-style-type:disc">Game Session provides current turn’s data to the Player component.</li></ul><ul id="b362ec70-932b-45ae-ac65-6e1d77882d8c" class="bulleted-list"><li style="list-style-type:disc">The player component uses Session Data, Property and Bank components<ul id="cca6c3e9-8d43-4449-9516-7212afe458cd" class="bulleted-list"><li style="list-style-type:circle">The player uses the Bank component for money transactions.</li></ul><ul id="4ca69911-789d-4751-ac8f-76dcc55bc254" class="bulleted-list"><li style="list-style-type:circle">The player uses the Session Data component to get information about the current status of the game.</li></ul><ul id="99f0be17-2037-424a-94e6-1aa79e3296bd" class="bulleted-list"><li style="list-style-type:circle">The player uses Property component to buy/sell properties.</li></ul></li></ul><ul id="0ff86572-c0cb-440c-b42a-ef44899e35b4" class="bulleted-list"><li style="list-style-type:disc">Bank provides Inflation Rate to Property component. Because of this, its price can be dynamic.<ul id="c587438c-ed1d-4ed8-a745-5ef0338c098d" class="bulleted-list"><li style="list-style-type:circle">Bank also uses Game Session to get information about the status of the game to change exchange rates and inflation rates according to it.</li></ul></li></ul><h1 id="22bd905d-d71a-42ab-a93c-446cb94012ee" class="">3. Low-Level Design</h1><h2 id="1569f0a8-0913-41f5-acd0-0a5cef784cd1" class="">3.1 Class Diagrams</h2><p id="2442e85b-3dfb-4c8c-9a15-c50705cc425d" class="">
+</p><figure id="35a71282-a259-48df-bd6c-4d14baf83627" class="image"><a href="Design%20Doc%20eca6c/classDiagram_monopoly.drawio_(2).png"><img style="width:745px" src="Design%20Doc%20eca6c/classDiagram_monopoly.drawio_(2).png"/></a></figure><p id="c8b2698c-2c27-43c1-85d8-28d74eaa17e6" class="">
+</p><ul id="c451bec9-c351-40d2-82a5-8b66298ca879" class="bulleted-list"><li style="list-style-type:disc">The above diagram shows all the class diagrams for our New Monopoly Game. Each class diagram is represented from top to bottom with its class name, class fields, and class methods.</li></ul><ul id="c012d24b-292e-4ceb-99dd-6941e128484a" class="bulleted-list"><li style="list-style-type:disc">Property Class<ul id="1079c0c0-ed3b-4387-89a5-9e422056cbd3" class="bulleted-list"><li style="list-style-type:circle">Fields:<ul id="415252f6-6d9f-46fd-a780-d88728b19333" class="bulleted-list"><li style="list-style-type:square">propertyId: Id of the property that shows which zone of the game the property belongs to.</li></ul><ul id="637cdba3-2a2f-4864-9fff-2d0a0c29ad97" class="bulleted-list"><li style="list-style-type:square">propertyPrice: Price of the property.</li></ul><ul id="b550cdeb-6537-4ff8-9fc3-1c51848a3f1a" class="bulleted-list"><li style="list-style-type:square">propertyColor: Color of the Property set (Such as Blue-Tarabya).</li></ul><ul id="909900ae-5674-40c1-a1ab-b30d25cbd9ed" class="bulleted-list"><li style="list-style-type:square">houseHotelCount: Shows how many house(s)/hotel(s) the property has.</li></ul><ul id="15bbd9db-13b1-4e92-984d-f8afe02ff857" class="bulleted-list"><li style="list-style-type:square">rentAmount: Shows how much a player has to pay when stepping in that zone. </li></ul></li></ul><ul id="a98f2edb-9c37-4fef-b26e-2127f75e08d9" class="bulleted-list"><li style="list-style-type:circle">Methods:<ul id="a0102a58-2ba2-4cdb-9d7d-8f3037554c4b" class="bulleted-list"><li style="list-style-type:square">propertyBough(): Method used to check whether a property is bought.</li></ul><ul id="ad266b56-c22f-44c6-a587-146dd683f117" class="bulleted-list"><li style="list-style-type:square">houseBuilt(): Method used when a house is built by a player.</li></ul><ul id="284f0c09-facc-4680-b56c-c8cabf2e65da" class="bulleted-list"><li style="list-style-type:square">hotelBuilt(): Method used when a hotel is built by a player.</li></ul><ul id="f3c0d1b0-9bd8-4648-a403-1c3b0f771a1e" class="bulleted-list"><li style="list-style-type:square">propertyMortgaged(): Method used when a player mortgages their property for money.</li></ul><ul id="85442e61-798e-47ff-aaa8-d9aa2fce1861" class="bulleted-list"><li style="list-style-type:square">checkColorSet(): Method used to check if the full set of zones is bought by a player.</li></ul></li></ul></li></ul><ul id="bc3fe51b-7350-41ec-88b7-6525be89c640" class="bulleted-list"><li style="list-style-type:disc">Player Class:<ul id="e8ea61c6-da1e-46d4-a20e-cdaba5d229c5" class="bulleted-list"><li style="list-style-type:circle">Fields:<ul id="d595f69b-1033-4e47-9e42-204ce9cf9e25" class="bulleted-list"><li style="list-style-type:square">playerId: Id of the player.</li></ul><ul id="2f8abbd7-7542-4925-8f35-effc2d289a36" class="bulleted-list"><li style="list-style-type:square">playerName: Name of the player.</li></ul><ul id="29ca1ced-af50-4292-8dd4-f9b9ad74ce0e" class="bulleted-list"><li style="list-style-type:square">dollarAmount: Total dollar amount of the player.</li></ul><ul id="b21eda83-c5d4-4933-bcca-a323a4206731" class="bulleted-list"><li style="list-style-type:square">euroAmount: Total euro amount of the player.</li></ul><ul id="21ec88d2-674f-4725-b323-257e291d92b7" class="bulleted-list"><li style="list-style-type:square">liraAmount: Total lira amount of the player.</li></ul><ul id="67d3489a-a00e-434e-a6a0-6a1d74070f53" class="bulleted-list"><li style="list-style-type:square">properties: Properties the player has bought.</li></ul><ul id="73354846-7f95-44f8-80f8-cbc81129b9f2" class="bulleted-list"><li style="list-style-type:square">cards: Cards the player is holding.</li></ul></li></ul><ul id="95a6b2fa-2a6b-430e-ac5c-46447c0e2592" class="bulleted-list"><li style="list-style-type:circle">Methods:<ul id="8675f69b-90d1-405c-bd26-d48e4765f583" class="bulleted-list"><li style="list-style-type:square">rollDice(): Method used to roll the dices.</li></ul><ul id="f27c68f6-1a42-4590-978d-dd6035ddf254" class="bulleted-list"><li style="list-style-type:square">move(): Method used to move on the board.</li></ul><ul id="4b5c3a7a-0186-43cb-9263-cd3aa8e12e48" class="bulleted-list"><li style="list-style-type:square">useJailFree(): Method used to use the jail-free card.</li></ul><ul id="cabdde3c-4d23-4c3c-a1ea-90611dbd5908" class="bulleted-list"><li style="list-style-type:square">drawCard(): Method used to draw cards when stepped on specific zones.</li></ul><ul id="3b5567db-038b-4e3c-ae3c-eb4445585360" class="bulleted-list"><li style="list-style-type:square">payRent(): Method used to pay rent when stepping on zones of other players.</li></ul><ul id="47269a30-0664-4a87-846b-d132da8f839e" class="bulleted-list"><li style="list-style-type:square">buyProperty(): Method used to buy a property.</li></ul><ul id="4186d825-4a32-4158-827d-4f32be6b3292" class="bulleted-list"><li style="list-style-type:square">buildHouse(): Method used to buy a house.</li></ul><ul id="eb9732e8-c231-4f85-a053-865d209d3ee8" class="bulleted-list"><li style="list-style-type:square">buildHotel(): Method used to buy a hotel.</li></ul><ul id="ecde24e1-4849-41a1-b839-25cdef6b0aae" class="bulleted-list"><li style="list-style-type:square">joinLobby(): Method used to join a lobby.</li></ul><ul id="1159a33a-cd2f-4f52-a5f2-8ac0ded6f115" class="bulleted-list"><li style="list-style-type:square">createLobby(): Method used to create a lobby.</li></ul></li></ul></li></ul><ul id="32f40fed-6a12-422c-a77d-d9f677f59e43" class="bulleted-list"><li style="list-style-type:disc">Game Session:<ul id="bd5a3974-483b-4117-9959-fd1d3932d6fc" class="bulleted-list"><li style="list-style-type:circle">Fields:<ul id="8c0296e9-b720-4acb-b188-45230c0c963c" class="bulleted-list"><li style="list-style-type:square">thisTurn: Field to determine whose turn it is.</li></ul><ul id="3351125d-1a85-4209-a5aa-f543bf6b9f7d" class="bulleted-list"><li style="list-style-type:square">timeLeft: Field to determine how much time a player has left to play.</li></ul><ul id="af1b852b-27c2-4335-82c9-a4f55ff0bbc3" class="bulleted-list"><li style="list-style-type:square">winnerParty: Field to show who has won.</li></ul><ul id="f0e15c86-3009-4676-8736-6bea0a792263" class="bulleted-list"><li style="list-style-type:square">thisSession: Field to show which session it is.</li></ul></li></ul><ul id="68ee7227-c992-47cd-a48e-37fc69cd4e88" class="bulleted-list"><li style="list-style-type:circle">Methods:<ul id="2acaf216-766a-4fa7-ba5d-ba0bd1528555" class="bulleted-list"><li style="list-style-type:square">startSession(): Method to start a session.</li></ul><ul id="0c502a14-d517-4c81-960e-ac4d0ad848fa" class="bulleted-list"><li style="list-style-type:square">endSession(): Method to end a session.</li></ul><ul id="d41eb62a-1f45-4807-8eb9-e79bd8c920ea" class="bulleted-list"><li style="list-style-type:square">nextTurn(): Method to go to the next turn.</li></ul><ul id="9a606b5c-8555-4d3e-832c-6b485885fa8d" class="bulleted-list"><li style="list-style-type:square">roundTimer(): Method to provide timer for each turn.</li></ul><ul id="7554b4e1-56a6-444e-96b9-2a9b74a197c1" class="bulleted-list"><li style="list-style-type:square">checkWinCondition(): Method to check if any party has won.</li></ul></li></ul></li></ul><ul id="6a3dc18e-9ef8-4be1-b458-a996098bc660" class="bulleted-list"><li style="list-style-type:disc">Bank Class<ul id="0d20a3f9-104e-4edb-9493-debcffa1c179" class="bulleted-list"><li style="list-style-type:circle">Fields:<ul id="ae3a5c39-a6e7-4be2-a883-339290adeeac" class="bulleted-list"><li style="list-style-type:square">dollarAmount: The amount of dollar currency the player holds.</li></ul><ul id="d4051d79-09da-47d9-a700-5f8b6deb4909" class="bulleted-list"><li style="list-style-type:square">euroAmount: The amount of euro currency the player holds.</li></ul><ul id="8f9d8e9b-5eee-41af-970a-10605568f683" class="bulleted-list"><li style="list-style-type:square">liraAmount:  The amount of lira currency the player holds.</li></ul><ul id="37aa8e75-3fe9-4d24-86a7-85bfcd934036" class="bulleted-list"><li style="list-style-type:square">inflationPercentage: The inflation percentage is determined by the total amount of currencies each player has. Is used to raise property prices.</li></ul></li></ul><ul id="dc5a9173-7903-4897-8ade-c13a04ed9907" class="bulleted-list"><li style="list-style-type:circle">Methods:<ul id="62e75975-2c2f-4e79-a34e-e67771e27f12" class="bulleted-list"><li style="list-style-type:square">giveMoney(): Method used to transfer money from the bank to a player</li></ul><ul id="99893d44-dd53-4fdd-9708-518528765a74" class="bulleted-list"><li style="list-style-type:square">takeMoney(): Method used to transfer money from a player to the bank.</li></ul><ul id="40406cc2-dd9a-4929-a866-60dcb681778b" class="bulleted-list"><li style="list-style-type:square">calculateInflation(): Method used to calculate the inflation rate based on the total number of currencies in the market.</li></ul><ul id="0da166c7-94c6-4f79-80eb-9fd0a4126808" class="bulleted-list"><li style="list-style-type:square">calculateCurrencies(): Method used to determine exchange rates between each combination of currencies.</li></ul></li></ul></li></ul><h2 id="b0d30044-1da2-49f4-8c13-0823b78f1f1f" class="">3.2 Sequence Diagrams</h2><h3 id="92b21187-1494-4a61-b845-46e52a22aef7" class="">3.2.1 Diagram Containing All Use Cases </h3><p id="e45c4ec6-d14c-40ff-9a8a-e30a855e17d1" class="">
+</p><figure id="031145fa-aa2b-4d1f-a6b4-ab3ddbb291d1" class="image"><a href="Design%20Doc%20eca6c/SequenceDiagram.drawio.png"><img style="width:841px" src="Design%20Doc%20eca6c/SequenceDiagram.drawio.png"/></a></figure><ul id="15e89678-eba3-4b08-97f4-63fc8436a02e" class="bulleted-list"><li style="list-style-type:disc">The above diagram shows the sequence diagram containing all 6 use cases for our New Monopoly game. The use cases include “Join Lobby”, “Create Lobby”, “Tutorial”, “Start a New Game”, “New Monopoly Gameplay” and “Finishing a game”. All these use cases are explained one by one below. One thing that can’t be seen in the below diagrams is the Lobby Loop which encompasses 5 use cases.</li></ul><h3 id="f2e7fc2e-6c7e-400a-a2b6-13f30718e854" class="">3.2.1.1 Use Case 1: Join Lobby</h3><p id="0e84ff8d-0a3a-41a5-adb0-d645f7f6347c" class="">
+</p><figure id="3a0e5c4b-8f56-4a07-98b6-573bac7a805e" class="image"><a href="Design%20Doc%20eca6c/Join_Lobby.drawio.png"><img style="width:365px" src="Design%20Doc%20eca6c/Join_Lobby.drawio.png"/></a></figure><ul id="ee356b96-034d-4ca5-917b-4b0072870649" class="bulleted-list"><li style="list-style-type:disc">To join a lobby, Lobby Creator and Lobby Joiner invoke JoinLobby().</li></ul><ul id="48ff937d-067f-4ff2-b285-290c86437187" class="bulleted-list"><li style="list-style-type:disc">“Lobby Join Response” condition block represents two possible outcomes: Successful Response and Unsuccessful Response.</li></ul><ul id="cb6d01e1-5da0-4564-b75d-5ec85e266b2e" class="bulleted-list"><li style="list-style-type:disc">Depending on if the outcome is successful/unsuccessful,  players that invoked JoinLobby() join/don’t join the lobby.</li></ul><h3 id="0ac8cbf1-8a46-4938-be4f-d530b2b2bbd9" class="">3.2.1.2 Use Case 2: Create Lobby</h3><p id="99f3a1f0-cb6c-4211-a8db-1a196bcc1073" class="">
+</p><figure id="27314e9a-2647-40f7-8aeb-835b773f78fb" class="image"><a href="Design%20Doc%20eca6c/Create_Lobby.drawio.png"><img style="width:231px" src="Design%20Doc%20eca6c/Create_Lobby.drawio.png"/></a></figure><ul id="12bb7fb2-eee9-4cad-80f7-43d123ccde1e" class="bulleted-list"><li style="list-style-type:disc">To create a lobby, Lobby Creator invokes CreateLobby().</li></ul><ul id="334c1a83-4271-46b8-98b5-6665a5f90495" class="bulleted-list"><li style="list-style-type:disc">“Lobby Creation Response” condition block represents two possible outcomes: Successful Response and Unsuccessful Response.</li></ul><ul id="9f8f3b0e-c9d8-4774-a435-61867ecf609d" class="bulleted-list"><li style="list-style-type:disc">Depending on if the outcome is successful/unsuccessful, players that invoked CreateLobby() create/don’t create the lobby.</li></ul><h3 id="f64a8dbd-b9b1-4a04-bf6d-300f34dffd5b" class="">3.2.1.3 Use Case 3: Tutorial</h3><p id="04fe89c6-1cb3-4882-bcd9-592ea535dae5" class="">
+</p><figure id="2c958f64-6fab-49a5-b2be-287bb95f9942" class="image"><a href="Design%20Doc%20eca6c/Tutorial.drawio.png"><img style="width:203px" src="Design%20Doc%20eca6c/Tutorial.drawio.png"/></a></figure><ul id="1cf41a17-196d-4024-924f-5e0f859bcfbf" class="bulleted-list"><li style="list-style-type:disc">To see the tutorial, the Player invokes PLayTutorial().</li></ul><ul id="90ab67d5-8df7-43b5-b155-14f0f67e56ba" class="bulleted-list"><li style="list-style-type:disc">The player then sees the tutorial of the game.</li></ul><h3 id="8910f992-645e-411d-9c7e-95c1a6b714e8" class="">3.2.1.4 Use Case 4: Start a New Game</h3><p id="d24f27ad-e34f-4f8c-9b9a-1989599e952b" class="">
+</p><figure id="34cfd965-e772-4cd9-a383-3de221542e78" class="image"><a href="Design%20Doc%20eca6c/Start_A_New_Game.drawio.png"><img style="width:708px" src="Design%20Doc%20eca6c/Start_A_New_Game.drawio.png"/></a></figure><ul id="0bfd23a7-33f5-4e19-8449-4cdb9e362e02" class="bulleted-list"><li style="list-style-type:disc">To start the game, Lobby Creator invokes StartGame().</li></ul><ul id="582c4145-bc5a-4273-9d86-00d031762cfa" class="bulleted-list"><li style="list-style-type:disc">“Start Game Response” condition block represents two possible outcomes: Successful Response to Player actor and Unsuccessful Responses. The responses are represented to the  Lobby Joiner and the Lobby Creator actors.</li></ul><ul id="0d2aa41e-710e-421c-96ea-41c39320821a" class="bulleted-list"><li style="list-style-type:disc">After StartGame() is invoked, the game is started.</li></ul><h3 id="17720efc-9374-4624-ba7c-7089b08f9066" class="">3.2.1.5 Use Case 5: New Monopoly Gameplay</h3><p id="1227aa30-3a4b-4cb4-84c8-a5863a2fe24d" class="">
+</p><figure id="9bb58835-3597-4c93-8e2c-a2a603a1a57f" class="image"><a href="Design%20Doc%20eca6c/New_Monopoly_Gameplay.drawio.png"><img style="width:217px" src="Design%20Doc%20eca6c/New_Monopoly_Gameplay.drawio.png"/></a></figure><ul id="797b6422-8c2d-49af-950c-e3daafd2148b" class="bulleted-list"><li style="list-style-type:disc">“Game Loop” condition block represents the gameplay of the game.</li></ul><ul id="21245ee8-eb36-4d9e-9ed6-7e0118a8eefc" class="bulleted-list"><li style="list-style-type:disc">Player plays the game and the Game object checks if the game has ended or not.</li></ul><ul id="732cdc2f-a9d5-4a95-9534-b8d9186456ae" class="bulleted-list"><li style="list-style-type:disc">Depending on if the game has ended or not, the player will keep playing them or the game will finish.</li></ul><h3 id="754811f9-f0c8-4b85-8c02-236b51b0a191" class="">3.2.1.6 Use Case 6: Finishing a Game</h3><p id="c5127498-ecc3-47c6-b701-99872c6f4cf3" class="">
+</p><figure id="953c8c20-f0db-4bee-806c-ccaef9479fdc" class="image"><a href="Design%20Doc%20eca6c/Finishing_A_Game.drawio.png"><img style="width:203px" src="Design%20Doc%20eca6c/Finishing_A_Game.drawio.png"/></a></figure><ul id="58a38be3-4876-4a29-b2ef-6aa8bfca761f" class="bulleted-list"><li style="list-style-type:disc">To finish the game and show the scores, the Game object invokes FinishGame() and DisplayScore().</li></ul><ul id="3b591100-72d6-46a5-bdb0-6a46444c8328" class="bulleted-list"><li style="list-style-type:disc">After FinishGame() and DisplayScore() are invoked, the game is finished and the scores are displayed.</li></ul><h2 id="2ac64071-1d93-4b9f-81f9-ec65fbe20e10" class="">3.3 Data Flow Diagram</h2><div><p id="a5943605-5926-4044-810d-fb9da52e4e50" class="">
+</p></div><figure id="1ea4ce6f-add5-46db-9689-999e403e957f" class="image"><a href="Design%20Doc%20eca6c/data_flow_monopoly.drawio_(4).png"><img style="width:1411px" src="Design%20Doc%20eca6c/data_flow_monopoly.drawio_(4).png"/></a></figure><ul id="9b9efe4d-2163-494f-a18f-387f7312c426" class="bulleted-list"><li style="list-style-type:disc">The above diagram shows the Data Flow Diagram for our New Monopoly Game. The diagram is explained step by step below. The “Game Session Control” part is specifically made to show the level 2 DFD diagram.</li></ul><ul id="86c7a687-be8e-4f1d-91af-85d85a1175c4" class="bulleted-list"><li style="list-style-type:disc">Bank entity controls money transactions.<ul id="d9bf02e3-0b65-4c8f-bb00-d8f2f2cef4fa" class="bulleted-list"><li style="list-style-type:circle">Give Money process is responsible for money flow from the Bank entity to the Player entity.</li></ul><ul id="d8666844-e34e-44dd-92bf-9d437e67053f" class="bulleted-list"><li style="list-style-type:circle">Take Money process is responsible for money flow from the Player entity to the Bank entity.</li></ul><ul id="eec924dd-f028-40c6-81a9-0ac7e8718a4d" class="bulleted-list"><li style="list-style-type:circle">The Bank entity sends this information to the Game Session.</li></ul></li></ul><ul id="8b2db917-4d95-4c34-884a-10a89e7520c6" class="bulleted-list"><li style="list-style-type:disc">The Game Session Control process has 3 subtasks.<ul id="5e9e52b3-3e65-44dd-a5ab-4d8702bc3c13" class="bulleted-list"><li style="list-style-type:circle">It controls the lobby operations.</li></ul><ul id="404d4ed5-63eb-4c36-85e5-656e2af0dffc" class="bulleted-list"><li style="list-style-type:circle">It sets up the game settings</li></ul><ul id="4d78d410-8e96-4761-9e73-200058416d82" class="bulleted-list"><li style="list-style-type:circle">It also checks the money flow between players and the bank.</li></ul></li></ul><ul id="d1e935ed-0df2-41e3-acab-3ffb2c344b52" class="bulleted-list"><li style="list-style-type:disc">The player entity has can join or create a lobby.<ul id="7431f625-22f8-4d34-9af0-e21060a962fa" class="bulleted-list"><li style="list-style-type:circle">This information of players is used to set up the game settings of the session. </li></ul><ul id="0590d662-9190-4f5d-966d-337798d0584b" class="bulleted-list"><li style="list-style-type:circle">The game is started after the game settings are set up.</li></ul></li></ul><ul id="510b6ef5-4297-4a3a-a51c-f16412e7d180" class="bulleted-list"><li style="list-style-type:disc">The player entity can also buy properties.<ul id="113e9a0d-a3e7-4c5f-85f7-b49ea00b669e" class="bulleted-list"><li style="list-style-type:circle">Property entity updates Player’s properties and also </li></ul><ul id="6d8f2b1a-6090-45f5-b736-67198a63ba70" class="bulleted-list"><li style="list-style-type:circle">Property entity also sets own Property settings such as owner_id.</li></ul></li></ul><p id="81505f8a-2008-49f9-9799-1ea8107bbf07" class="">
+</p></div></article></body></html>

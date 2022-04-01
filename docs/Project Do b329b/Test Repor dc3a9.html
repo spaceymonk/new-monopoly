@@ -1,0 +1,754 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Test Report</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="dc3a9e2c-23c0-4821-96d2-3aa3980e632c" class="page sans"><header><h1 class="page-title">Test Report</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Created</th><td><time>@October 21, 2021 6:33 PM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Last Edited Time</th><td><time>@February 3, 2022 8:16 PM</time></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Type</th><td><span class="selected-value select-value-color-blue">Technical Spec</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><td><span class="selected-value select-value-color-gray">Archived</span></td></tr><tr class="property-row property-row-created_by"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Created By</th><td></td></tr><tr class="property-row property-row-last_edited_by"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Last Edited By</th><td></td></tr><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesPerson"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Stakeholders</th><td></td></tr></tbody></table></header><div class="page-body"><nav id="20f24159-86c7-4ea1-b334-8dca65ff0d0d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5b11fcb2-1d2c-4ebf-9c85-225c1813d60f">1. Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8ea4bafe-a8b4-4a4e-b5ea-292f476ab68e">2. Test Plan</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#24fcc94b-45f5-41ea-a117-bfe1da2722d1">2.1 Testing Strategy</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cbb58261-6223-46f9-b022-15074a056db7">2.2 Test Subjects</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#407c9c90-6398-478d-bec1-3ed33e7563a5">2.3 Black Box Testing</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28622c96-46ce-4050-aa52-ee2be35b6a82">Dice Result</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c935f0aa-a89f-4629-ba36-c12495c92d83">Rent Amount</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#bb909759-1abd-4eb3-9377-661132280898">Property Price</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c30bd329-9d3c-464a-9116-f0bdfaaefc0a">Remaining Time</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#124e8bc2-19ea-4af3-8c0c-0920817f1712">Username</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9433064d-03d3-409c-a707-94bf199c46c0">Turn Status</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#dadc4f16-7ee3-4585-9143-504f95b14201">Exchanged Currency Amount</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f26ed76b-307c-4d27-b451-bd602777fee2"><strong>Player Cash Amount</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5124923f-c7e0-4682-ae18-14ec16e7c106">Game win Condition</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1887e9d8-5fe3-4502-b55e-1899035e989c">Show Tutorial Condition</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a9f3760d-b322-4dc7-964b-5aad301c9331">2.4 White Box Testing</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f2a40b16-7660-4bd3-a0fd-c5e51b0ce6c6">Dice Roll System</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#da3bcacf-fbd0-49f2-85b9-1a88808081da">Setting Up Game Board</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2dfa6ed7-3d26-4f17-87ba-962d298750ea">Movement of Player Pieces</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5a02b234-f281-4e20-aff9-99c08e1e126b">Class Scripts Coding</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#e545171c-fbea-457a-90f9-73865a36bcd5">Turn Operation In One Turn</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1f70d762-490e-43e0-a8b5-4a2a1cb26490">Turn Change System</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#d2a1ce16-5106-4f1e-b1d9-4a9d086d3a06">Endgame Screen Design and Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7698bff1-a7bc-49ab-b133-8fda1790291d">In-game HUD Design and Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#fd2c1f8e-8f47-4c42-96e6-fe55dab14686">Main Menu Design and Function</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2607a1b3-5357-478a-b533-f01556b9fa58">Property Ownage System</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#20d35d95-95c5-4f64-bd18-f77bee7c937f">Rent Payment System</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ee9984e1-fd49-4bf1-8542-827d3c96ce98">Exchange Station Implementation</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c9c2e472-351c-47b4-80e5-41d5f412e09a">Testing Tool(s)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d36437ab-99fa-4e58-a0a5-6275f4bd8804">3. Additional Tests</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#924b52fc-37a7-4bbd-adc7-567a3dd2a16e">3.1 Security Testing</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7a027d50-56ea-4ae4-bf15-8ac7ca6815ba">3.2 Performance Testing</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d375f75b-5f5c-4478-a3e5-80ddad842e3a">3.3 Load/Stress Testing</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#752b12bf-5306-483a-ba71-6d3f2560634b">3.4 Acceptance Testing</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ff5255e9-1af0-4770-8ac7-bdd8d198cbde">4. Test Results</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a0805a49-fd89-43cb-a28a-aed9b259f983">4.1 Test Results Report</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ffdc36f4-9981-4461-a47a-bd9c7de4df89">4.2 Test Results Log</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8a9ecbc1-dd1a-4ef2-ab2e-3f41e2b19c5a">4.3 Additional Test Results</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9665fa56-9e10-401e-8356-0c5fd96650c2">Performance Test Results</a></div></nav><h1 id="5b11fcb2-1d2c-4ebf-9c85-225c1813d60f" class="">1. Introduction</h1><ul id="dadbe4c0-7e73-4b7e-9438-78d695bc2a7a" class="bulleted-list"><li style="list-style-type:disc">This is the Test Specification document for a new game which is called New Monopoly. In this document, the goal is to step by step explain the testing strategies and results we had throughout the creation of the game. This document describes our general testing plan, our outlook on different additional testing requirements, and our final test results. In the testing plan, our general testing strategy and its subjects are explained while also explaining white/black box testing’s contribution to our project. We also explain additional testing strategies required for our project; such as security, performance, load/stress, and acceptance testing. Finally, we finish the document by providing a detailed explanation of our testing results.</li></ul><h1 id="8ea4bafe-a8b4-4a4e-b5ea-292f476ab68e" class="">2. Test Plan</h1><h2 id="24fcc94b-45f5-41ea-a117-bfe1da2722d1" class="">2.1 Testing Strategy</h2><ul id="e86ca757-b741-47cc-a94f-c3264a03fb1c" class="bulleted-list"><li style="list-style-type:disc">Our main testing strategy was an incremental bottom-up approach. We used this testing strategy to test our project in small parts to then combine these parts to create a bigger architecture that we would then test again. The main three methods used were:<ul id="943dcc4f-2ead-4c60-99ff-2f585feb2e54" class="bulleted-list"><li style="list-style-type:circle">Unit Testing</li></ul><ul id="43c0cd3c-19bc-4056-a0ea-c7cf21b2aef1" class="bulleted-list"><li style="list-style-type:circle">Integration Testing</li></ul><ul id="a206a82c-bd5d-4c3b-9b27-d09b614066a8" class="bulleted-list"><li style="list-style-type:circle">System Testing</li></ul></li></ul><ul id="cf64100b-b020-4ee1-a9d6-44a3d79482c6" class="bulleted-list"><li style="list-style-type:disc">Our way of completing our project was that we would assign each group member a task, and then when all of us finished those tasks; we would then combine them to create a bigger code architecture. Because of our system of implementation, we chose a bottom-up incremental approach.</li></ul><ul id="e27c1906-c599-4bd8-8e5e-8c5c6b37ed64" class="bulleted-list"><li style="list-style-type:disc">The New Monopoly had many functions that we had to create and there were many small things that needed to work together after their initial implementation. Because of this, we thought an incremental approach would be best since any effect on the smaller subtasks would affect the entirety of the bigger architectures. We thought that by using an incremental approach, we would be able to test our tasks easier and also find flaws that could affect our system early. The reason we used a bottom-up approach was also quite the same. Since we would create small models as tasks first, we thought it would be better to test these models first and then integrate them. We also structured our testing system according to our way of doing the project. </li></ul><ul id="e456e552-026b-4236-98c3-f15b988f8287" class="bulleted-list"><li style="list-style-type:disc">For each task we assigned to a group member, we would do unit testing on it since it was the smallest piece of code architecture. Then when all these tasks were finished, we would combine them to create a bigger architecture of code that we would do integration testing on. We did this quite often as we dissected the project into many small code parts. </li></ul><ul id="06f6475c-c303-4390-b83e-b6e4d7e0bb7b" class="bulleted-list"><li style="list-style-type:disc">Since there were many tasks given to each individual member, there were many integration tests done on bigger code architecture parts. When all tasks were finished and they were combined with their respectively given tasks, those bigger code architectures had to be combined as well. This is where we used system testing. </li></ul><ul id="7d9fcdf3-8e6b-452e-ad76-10d993e51bc6" class="bulleted-list"><li style="list-style-type:disc">We combined the bigger code architectures that were created by the combination of the smallest code parts. This was done at the end of the projects to finalize the project. On the biggest and final architecture of our project, we did system testing to test if everything we had done previously was able to work together. </li></ul><ul id="f8cb2c18-a324-4cfa-9dbb-2186fb85ee8a" class="bulleted-list"><li style="list-style-type:disc">We also did regression tests on code architectures that required integration and system testing.</li></ul><ul id="ef67773a-dfc6-468a-9636-7a046ba9fac3" class="bulleted-list"><li style="list-style-type:disc">Since our project was creating game and included a lot of both backend and frontend, we also used white-box and block-box testing.</li></ul><ul id="446615ff-2790-4781-af88-ca494a20a65d" class="bulleted-list"><li style="list-style-type:disc">An image to further visualize our testing strategy can be seen below. It is important to note that this is just visualization and the number of tests doesn’t demonstrate our actual test counts.</li></ul><figure id="c7d5a9d7-679c-4a3b-a0d2-341a1f5c2e6b" class="image"><a href="Test%20Repor%20dc3a9/Untitled_Diagram.jpg"><img style="width:1251px" src="Test%20Repor%20dc3a9/Untitled_Diagram.jpg"/></a></figure><h2 id="cbb58261-6223-46f9-b022-15074a056db7" class="">2.2 Test Subjects</h2><p id="05675379-3ace-406e-9047-553d502c5817" class="">
+</p><figure id="91549712-626a-4bad-a33c-9f8d63589da3" class="image"><a href="Test%20Repor%20dc3a9/unknown.png"><img style="width:672px" src="Test%20Repor%20dc3a9/unknown.png"/></a></figure><ul id="1fcbd020-f687-4a6f-b4be-a8b1cb8c6651" class="bulleted-list"><li style="list-style-type:disc">In the above figure, the Components Diagram for our New Monopoly Game can be seen. In this section, we will explain the data subject to integration testing from the five main components in the Components Diagram which are Property, Bank, Player, Game Session, Session Data. The list of data subject to integration testing can be seen below for the applicable components. </li></ul><ul id="d5196e1f-2443-48ad-8c0a-e646ab71d94b" class="bulleted-list"><li style="list-style-type:disc"><strong>Property Component:</strong><ul id="c29027d9-3d79-4b24-9954-53ae0203928f" class="bulleted-list"><li style="list-style-type:circle"><strong>Rent Payment:</strong> The rent payment can differ throughout the game. Because of this, it is tested with many different features. The ownership of one property, the whole card set, properties with houses, properties with hotels, the money transaction system, etc. are some of the many different testing the rent payment system is subjected to.</li></ul><ul id="b6fb20e9-318f-4fa2-81f3-90fc3b2cf83d" class="bulleted-list"><li style="list-style-type:circle"><strong>Buying and Selling Properties:</strong> Properties are bought and sold on different occasions in the game. Buying/Selling a property is tested with transactions for each action, property availability, different decisions on available properties (buy or pass), and property selling on occasions where money is needed for a player.</li></ul><ul id="7a239b7e-5b27-4b85-8781-e39a6b753855" class="bulleted-list"><li style="list-style-type:circle"><strong>Integration with Other Components:</strong> Properties are closely related to players and the bank. Property operations are done by players while all transactions are done with the help of the bank. Because of this, the property component is closely tested together with the bank and player components.</li></ul></li></ul><ul id="9c94e300-d596-4ba0-89c7-95a4b69b5201" class="bulleted-list"><li style="list-style-type:disc"><strong>Player Component:</strong><ul id="78d2f05d-5f4e-4ab4-abfc-76a6d2cb206f" class="bulleted-list"><li style="list-style-type:circle"><strong>Turn Actions:</strong> Each turn consists of different three different game states which are dice roll, player movement, and the active state. The player is directly involved in two of these states which are dice roll and action state, player movement is done automatically. The states that the player is involved are tested. Dice roll mechanics, user buttons for a dice roll, property buying decisions, currency exchange point decisions, etc. are tested.</li></ul><ul id="6b813b69-1b03-46eb-a07a-c43c5e80503e" class="bulleted-list"><li style="list-style-type:circle"><strong>Money Transaction:</strong> Each player has money in three different currencies and can use this money on many different occasions such as buying properties, paying rent, exchanging money, etc. These types of operations are tested to create the general money flow of the game. </li></ul><ul id="fedc5e25-23c7-45d6-a52b-3c393a6d8e08" class="bulleted-list"><li style="list-style-type:circle"><strong>Integration with Other Components: </strong>Players are closely related to all other components since they are the ones creating all the actions in the game. Also, their data has to be stored throughout the game for the continuation of the game. Because of this, the player component is closely tested together with all other components.</li></ul></li></ul><ul id="90ca40aa-ea2c-44ae-a344-4937aa82b566" class="bulleted-list"><li style="list-style-type:disc"><strong>Bank Component:</strong><ul id="18f34ade-86da-4c0d-8c5d-5ebdaa1c2fbe" class="bulleted-list"><li style="list-style-type:circle"><strong>Inflation rate:</strong> The New Monopoly game has an inflation mechanic which, as the game progresses, creates inflation on the property prices. The mechanic is tested for the correct calculation of the interest rate and pricing calculations.</li></ul><ul id="e6fa7062-8c49-4228-8f2f-25f83d7765aa" class="bulleted-list"><li style="list-style-type:circle"><strong>Currency rates:</strong> The current spots in the game allow players to exchange their money between different currencies. The bank is tested for the calculation of the currency rates and the conversion of players’ money.</li></ul><ul id="091a19af-e0a7-4d57-aa7c-2591481b0c2c" class="bulleted-list"><li style="list-style-type:circle"><strong>Integration with Other Components:</strong> The bank is closely related to players and the game session. All the general money flow is done with the help of the bank and it&#x27;s the banks’ job to deliver the changing status of the money in the game to the game session. Because of this, the bank component is closely tested together with the player and game session components.</li></ul></li></ul><ul id="d6fc10d1-6dd9-4c1d-83c7-adec1d8ec3f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Game Session Component:</strong><ul id="9f5bcea2-7158-4532-b1ac-fa71db633405" class="bulleted-list"><li style="list-style-type:circle">There are interchangeable things for any game session. These are turn status, remaining time, dice roll, and game over the condition. <ul id="9edb27cd-ca94-417f-a1a6-f05ee528865c" class="bulleted-list"><li style="list-style-type:square"><strong>Turn Status:</strong> In each turn, players have a game screen for their actions and the player data. The actions of the turn are tested along with the data of the player which includes players’ time remaining, properties, and all three currency amounts.</li></ul><ul id="e6e5168e-d9de-488f-94ae-86e9b11a0d1c" class="bulleted-list"><li style="list-style-type:square"><strong>Remaining Time:</strong> Each turn has a counter of sixty seconds per turn. The change of players’ turns according to the remaining time has been tested.</li></ul><ul id="a6b8b6cd-6c07-4f61-95c5-528acb5690e9" class="bulleted-list"><li style="list-style-type:square"><strong>Dice Roll:</strong> In each turn, a player has to roll a dice to move around the map. The randomness of the dice roll mechanic along with the verification of dice data with movement has been tested.</li></ul><ul id="354993cb-9837-4a1b-8df9-609ca1fd2754" class="bulleted-list"><li style="list-style-type:square"><strong>Game Over Condition:</strong> The game ends when either the monopoly or all the remaining players go bankrupt. This condition has been tested for both outcomes.</li></ul><ul id="9953dfbe-0f8e-4039-915b-fda1d60c6a1d" class="bulleted-list"><li style="list-style-type:square"><strong>Integration with Other Components: </strong>The game session is closely related to the bank and the player. While storing some data on its own, the game sessions get data from the bank and along with its data; supply it to the player. Because of this, the game session is closely tested together with the bank and player components.</li></ul></li></ul></li></ul><h2 id="407c9c90-6398-478d-bec1-3ed33e7563a5" class="">2.3 Black Box Testing</h2><ul id="41593505-fa93-4d73-8acb-7538e02d1578" class="bulleted-list"><li style="list-style-type:disc">We have partitioned valid and invalid input values into partitioning classes. Below you can see the table containing our equivalence partitioning.</li></ul><table id="2a2577a6-bb8e-4371-b42f-70f87be46655" class="simple-table"><thead><tr id="a6f82bbd-aa19-4211-b7b6-fdc912ae615e"><th id=";ANj" class="simple-table-header"><strong>INPUT</strong></th><th id="?jqy" class="simple-table-header"><strong>VALID EQUIVALENCE CLASS</strong></th><th id="LmR;" class="simple-table-header"><strong>INVALID EQUIVALENCE CLASS</strong></th></tr></thead><tbody><tr id="49943b6d-009b-4730-a049-61a71b62951b"><td id=";ANj"><strong>Dice results</strong>
+<em>Any value between 2 and 12</em></td><td id="?jqy">[2,12], <em>e.g. 6</em></td><td id="LmR;">Dice Result &lt; 2, e.g. 1
+Dice Result &gt; 12, e.g. 15</td></tr><tr id="bb9154cd-5cf9-4119-a87c-f5dc0626553f"><td id=";ANj"><strong>Rent Amount</strong>
+<em>Any value between 0 and infinity</em></td><td id="?jqy">(0, <strong>∞</strong>], <em>e.g. 50</em></td><td id="LmR;">Rent Amount &lt; 0, e.g. -1</td></tr><tr id="91d00f10-8f48-48db-8aed-0a2e0b6fac1e"><td id=";ANj"><strong>Property Price
+</strong><em>Any value between 0 and infinity</em></td><td id="?jqy">[60, <strong>∞</strong>], <em>e.g. $1500</em></td><td id="LmR;">Property Price &lt; 60, e.g. 50</td></tr><tr id="1dd083c2-65b9-43a3-8d4d-ba011c6a45c4"><td id=";ANj"><strong>Remaining Time
+</strong><em>Any value between 0 and 60 seconds</em></td><td id="?jqy">[0,60], <em>e.g. 30 seconds</em></td><td id="LmR;">Remaining Time &lt; 0, e.g. -2
+Remaining Time &gt; 60, e.g. 70</td></tr><tr id="35d11c28-2ef0-41b1-9b18-73bcf212d104"><td id=";ANj"><strong>Username
+</strong><em>Supported alphanumeric characters
+Length is the number of characters</em><strong>
+</strong><em>Length can be between 4 and 25</em></td><td id="?jqy">[a, z] ∪ [A, Z] ∪ [0, 9]
+4 ≤ Length ≤ 25
+<em>e.g. alptigin2000</em></td><td id="LmR;">All non-alphabetical characters
+e.g. [!, #, %, &amp;]
+Length &lt; 3, e.g. 2
+Length &gt; 25, e.g. 27
+</td></tr><tr id="805ec41a-d4d9-4493-a1e2-75d68cdea6b3"><td id=";ANj"><strong>Turn Status
+</strong><em>Supported alphanumeric characters
+Space and ‘ character
+Length is the number of characters</em><strong>
+</strong><em>Length can be between 11 and 32</em></td><td id="?jqy">[a, z] ∪ [A, Z] ∪ [0, 9] ∪ [Space character, ‘ character] 
+11 ≤ Length ≤ 32
+<em>e.g. alptigin2000’s turn</em></td><td id="LmR;">All non-alphabetical characters
+e.g. [!, #, %, &amp;]
+Length &lt; 3, e.g. 2
+Length &gt; 32, e.g. 35</td></tr><tr id="f27e441b-0807-4d6c-b8c0-0f853e6fdd70"><td id=";ANj"><strong>Exchanged Currency Amount
+</strong><em>Any value between 100 and infinity</em></td><td id="?jqy">[100, <strong>∞</strong>], <em>e.g. 5200</em></td><td id="LmR;">Exchanged Currency Amount &lt; 100,
+e.g. 70, “Fifty”</td></tr><tr id="2624d778-8768-4564-a15f-00a4613cbc8c"><td id=";ANj"><strong>Player Cash Amount
+</strong><em>The player can have dollars, euros, liras </em><strong>
+</strong><em>All currencies can have a value between 0 and infinity</em></td><td id="?jqy">[0, <strong>∞</strong>], <em>e.g. $28.500
+</em>[0, <strong>∞</strong>], <em>e.g. €25.000
+</em>[0, <strong>∞</strong>], <em>e.g. ₺386.000</em></td><td id="LmR;">Player Lira Amount &lt; 0, e.g. -2
+Player Euro Amount &lt; 0, e.g. -2
+Player Lira Amount &lt; 0, e.g. -2</td></tr><tr id="c7deef53-f25a-4be8-803d-db79e00b9c4b"><td id=";ANj"><strong>Game Win Condition</strong>
+<em>Boolean value</em></td><td id="?jqy">[”True”, “False”], <em>e.g. True</em></td><td id="LmR;">Any non-boolean values, e.g. “Win”</td></tr><tr id="e5d898fa-20ba-4a49-ba21-0de27e0c1e13"><td id=";ANj"><strong>Show Tutorial Condition</strong>
+<em>Boolean value</em></td><td id="?jqy">[”True”, “False”], <em>e.g. True</em></td><td id="LmR;">Any non-boolean values, 
+e.g. “Show the tutorial!”</td></tr></tbody></table><ul id="23d87de9-6d01-4ac2-9e5d-facebfcd371e" class="bulleted-list"><li style="list-style-type:disc">Below you can see our use case diagram. </li></ul><figure id="2827634c-212d-4383-b0cd-c9d855f69e41" class="image"><a href="Requiremen%206cb88/DAWLAND2.jpg"><img style="width:607px" src="Requiremen%206cb88/DAWLAND2.jpg"/></a></figure><ul id="d4d1362e-5509-4b0c-8fcc-1744ca63da2a" class="bulleted-list"><li style="list-style-type:disc">We have listed all our test cases and mapped them to their respective use cases. All table showing our listed tables can be seen below.</li></ul><h3 id="28622c96-46ce-4050-aa52-ee2be35b6a82" class="">Dice Result</h3><table id="406c9f23-f7f5-4d9c-bc87-2d201d4e7199" class="simple-table"><thead><tr id="53de0cc8-ae87-44b9-bcd4-540014a8c40c"><th id="&lt;bII" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="10eec820-dce0-48f8-97c1-b4fd574ac48b"><td id="&lt;bII">Invalid dice results, result too low</td><td id="_AAv">1</td><td id="XjmL">“Error: Dice result too low!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="e2412b0b-b4ae-408c-8b2f-bace9dc18ef0"><td id="&lt;bII">Invalid dice results, result too high</td><td id="_AAv">13</td><td id="XjmL">“Error: Dice result too high!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="518a7990-aaa6-4756-b8d0-e4dd7eea270b"><td id="&lt;bII">Valid dice result</td><td id="_AAv">7</td><td id="XjmL">7</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="c935f0aa-a89f-4629-ba36-c12495c92d83" class="">Rent Amount</h3><table id="c6ddf7b9-3b55-4cf4-bb80-9c58f50aea67" class="simple-table"><thead><tr id="225e1e43-7167-441b-b248-98ceb5f996e8"><th id="h_G\" class="simple-table-header"><strong>Description</strong></th><th id="_AAv" class="simple-table-header"><strong>Test Input</strong></th><th id="XjmL" class="simple-table-header"><strong>Expected Output</strong></th><th id="bs~B" class="simple-table-header"><strong>Use Case</strong></th></tr></thead><tbody><tr id="2d771dca-4521-43a5-8b50-e800716cb031"><td id="h_G\">Invalid rent amount, rent is negative</td><td id="_AAv">-400</td><td id="XjmL">“Error: Rent amount can’t be negative!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="fefd65ee-3547-4c69-b44f-2a9aa405afdc"><td id="h_G\">Invalid rent amount, rent in zero</td><td id="_AAv">0</td><td id="XjmL">“Error: Rent amount can’t be zero!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="5cdd49e2-9fb1-4045-b88b-5be6709b7927"><td id="h_G\">Valid rent amount</td><td id="_AAv">1500</td><td id="XjmL">1500</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="bb909759-1abd-4eb3-9377-661132280898" class="">Property Price</h3><table id="5c3a62e3-b87f-4640-9c7c-993fd937a83b" class="simple-table"><thead><tr id="1a9c9afb-2fef-4a12-81a4-0cd1c865e3b3"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="75c66e02-3404-4269-b7b4-172cb02dec12"><td id="h_G\">Invalid property price, price too low</td><td id="_AAv">50</td><td id="XjmL">“Error: Property price can’t be lower than 60!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="4532d145-1f5c-410e-91df-624effa864eb"><td id="h_G\">Valid property price</td><td id="_AAv">200</td><td id="XjmL">200</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="c30bd329-9d3c-464a-9116-f0bdfaaefc0a" class="">Remaining Time</h3><table id="1737ca3c-a049-44fc-b328-3bc3ddef8e43" class="simple-table"><thead><tr id="f296e382-77e7-47cd-a76b-80c84676f62c"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="6fcbd6ff-7e55-4c1b-ac7b-5302dd5b7f03"><td id="h_G\">Invalid remaining time, remaining time can’t be negative</td><td id="_AAv">-5</td><td id="XjmL">“Error: Remaining time can’t be negative.”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="6534e221-d970-40c0-ba86-64987cadd226"><td id="h_G\">Invalid remaining time, remaining time</td><td id="_AAv">75</td><td id="XjmL">“Error: Remaining time can’t be more than 60 seconds!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="e50afc3d-8c2b-4085-88e6-12ea615224e6"><td id="h_G\">Valid remaining time</td><td id="_AAv">50</td><td id="XjmL">print(”Time can not be more than 60 seconds!”)</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="124e8bc2-19ea-4af3-8c0c-0920817f1712" class="">Username</h3><table id="9192bc91-0d09-4529-84b8-931147ccd834" class="simple-table"><thead><tr id="1eae4ce5-b380-4cf6-a119-be703a642f26"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="544ee566-0e6c-45fd-a49b-1e250548e905"><td id="h_G\">Invalid username,
+username has non-alphabetical character</td><td id="_AAv">alptigin$2000</td><td id="XjmL">“Error: Username can’t have non-alphabetical characters!”</td><td id="bs~B">Join Lobby
+Create Lobby
+Start a New Game</td></tr><tr id="dab3daf1-73af-4253-97f2-89b8b48c9ecc"><td id="h_G\">Invalid username,
+username length too low</td><td id="_AAv">alp</td><td id="XjmL">“Error: Username can’t have less than 4 characters!”</td><td id="bs~B">Join Lobby
+Create Lobby
+Start a New Game</td></tr><tr id="3754f075-4623-42a9-a3e8-2e84072bb410"><td id="h_G\">Invalid username, username length too high</td><td id="_AAv">alpalpalpalpalpalpalpalpalpalp</td><td id="XjmL">“Error: Username can’t have more than 25 characters!”</td><td id="bs~B">Join Lobby
+Create Lobby
+Start a New Game</td></tr><tr id="163f2cb5-a4a3-4860-a8c6-9d50e2e57b5d"><td id="h_G\">Valid username</td><td id="_AAv">alptigin2000</td><td id="XjmL">alptigin200</td><td id="bs~B">Join Lobby
+Create Lobby
+Star a New Game</td></tr></tbody></table><h3 id="9433064d-03d3-409c-a707-94bf199c46c0" class="">Turn Status</h3><table id="5736837d-e717-4ef8-808e-7c3ef45de3f6" class="simple-table"><thead><tr id="3c722960-b676-4f1e-8075-9f020176f0f5"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="5ce64d58-bb1d-4bf3-aaee-f362148dba4b"><td id="h_G\">Invalid turn status,
+turn status has non-alphabetical character</td><td id="_AAv">alptigin$2000’s Turn</td><td id="XjmL">“Error: Turn Status can’t have non-alphabetical characters!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="adff8411-8bd6-4a63-8784-0215fcf45043"><td id="h_G\">Invalid turn status,
+turn status length too low</td><td id="_AAv">alp’s Turn</td><td id="XjmL">“Error: Turn Status can’t have less than 11 characters!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="9e44613b-ff2a-4c74-8632-f70c16dda1b9"><td id="h_G\">Invalid turn status, turn status length too high</td><td id="_AAv">alpalpalpalpalpalpalpalpalpalp’s Turn</td><td id="XjmL">“Error: Turn Status can’t have more than 32 characters!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="97984e82-a24a-4268-a204-98cf255774ce"><td id="h_G\">Valid turn status</td><td id="_AAv">alptigin2000’s Turn</td><td id="XjmL">alptigin2000’s Turn</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="dadc4f16-7ee3-4585-9143-504f95b14201" class="">Exchanged Currency Amount</h3><table id="c54cc238-8b73-475c-a9a5-76d2868ec1cf" class="simple-table"><thead><tr id="f62eec02-69fd-46ae-844a-a4e5fa74c2b5"><th id="&lt;bII" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="50385d5e-c0e8-4846-add6-d84cad68295b"><td id="&lt;bII">Invalid exchange amount, 
+exchange amount too low</td><td id="_AAv">50</td><td id="XjmL">“Error: Exchange amount can’t be lower than 100!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="06902013-eabd-4b98-8dc0-2a36d8a1b989"><td id="&lt;bII">Invalid exchange amount, exchange amount isn’t a number </td><td id="_AAv">“Five Hundred”</td><td id="XjmL">“Error: Exchange amount has to be a number!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="100558f1-256d-4bd2-8250-84fd28db95e7"><td id="&lt;bII">Valid exchange amount</td><td id="_AAv">500</td><td id="XjmL">500</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="f26ed76b-307c-4d27-b451-bd602777fee2" class=""><strong>Player Cash Amount</strong></h3><table id="c96dbe6f-77d0-4c8e-962d-bdcbbb902248" class="simple-table"><thead><tr id="40caa5b8-a35b-448d-9e27-c0b26091ac9c"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="c24df12b-b6a9-49cc-8f36-8a293788e87f"><td id="h_G\">Invalid player cash amount,
+players many can’t be negative</td><td id="_AAv">-100
+p.s. invalid for all currencies</td><td id="XjmL">“Error: Player money amount can’t be negative!”</td><td id="bs~B">New Monopoly Gameplay</td></tr><tr id="9b41fcb7-f7db-4610-bf6a-d42c1c05d3bc"><td id="h_G\">Valid player cash amount</td><td id="_AAv">1500
+p.s. valid for all currencies</td><td id="XjmL">1500</td><td id="bs~B">New Monopoly Gameplay</td></tr></tbody></table><h3 id="5124923f-c7e0-4682-ae18-14ec16e7c106" class="">Game win Condition</h3><table id="570c1ea3-1f4c-43af-98e9-c07f474ebc8a" class="simple-table"><thead><tr id="5b047ab4-2407-45c9-89a0-b20e9ee715e0"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="99c1c208-9aa3-4122-97ab-7500580a3695"><td id="h_G\">Invalid game win condition</td><td id="_AAv">“Monopoly Win!”</td><td id="XjmL">“Error: Game win condition has to be a boolean!”</td><td id="bs~B">Finishing a Game</td></tr><tr id="f7117289-2d4e-4e40-9e66-65ce3820f610"><td id="h_G\">Valid game win condition</td><td id="_AAv">“True”</td><td id="XjmL">“True”</td><td id="bs~B">Finishing a Game</td></tr></tbody></table><h3 id="1887e9d8-5fe3-4502-b55e-1899035e989c" class="">Show Tutorial Condition</h3><table id="b2e4a818-fed8-4fbb-856f-8b35c23d5899" class="simple-table"><thead><tr id="ebc8ff49-f3d7-4960-91d6-ae8b61b6660a"><th id="h_G\" class="simple-table-header">Description</th><th id="_AAv" class="simple-table-header">Test Input</th><th id="XjmL" class="simple-table-header">Expected Output</th><th id="bs~B" class="simple-table-header">Use Case</th></tr></thead><tbody><tr id="c97fd5f3-a711-4732-85a7-2acf5251226e"><td id="h_G\">Invalid show tutorial win condition</td><td id="_AAv">“Show tutorial!”</td><td id="XjmL">“Error: Show tutorial condition has to be a boolean!”</td><td id="bs~B">Tutorial</td></tr><tr id="d6591111-e70c-44a6-8ef3-a496f7cafe5a"><td id="h_G\">Valid show tutorial condition</td><td id="_AAv">“True”</td><td id="XjmL">“True”</td><td id="bs~B">Tutorial</td></tr></tbody></table><h2 id="a9f3760d-b322-4dc7-964b-5aad301c9331" class="">2.4 White Box Testing</h2><ul id="d121af2d-5151-466d-bd20-f1c0f6e2ee82" class="bulleted-list"><li style="list-style-type:disc">In Unity, the user interface is controlled by scripts that are written in C#. We had divided the project into two parts to contain two general types of scripts. These where “Class” and “Function” scripts. We built the game, creating scripts that would go into either category. All the scripts we used in the making of the game can be seen listed below.</li></ul><ul id="c575615c-547d-47dc-ac5c-4cfd08e7623e" class="bulleted-list"><li style="list-style-type:disc">Class Scripts:<ul id="880328ff-ebab-466a-9548-ce9d18e79afa" class="bulleted-list"><li style="list-style-type:circle">Card Script</li></ul><ul id="f99987d3-8229-4e98-889c-a35e7887d5c1" class="bulleted-list"><li style="list-style-type:circle">Player Script</li></ul><ul id="d39f4af9-bbe4-4864-bbd8-c1b9179a4f29" class="bulleted-list"><li style="list-style-type:circle">Zone Script<ul id="fda3cf9f-db4f-4540-a14d-1e8690b66b07" class="bulleted-list"><li style="list-style-type:square">Exchange Station Script</li></ul><ul id="a3aa5d30-9837-46a6-826b-e99fe1fb5f54" class="bulleted-list"><li style="list-style-type:square">Tax Zone Script</li></ul><ul id="2873ef5f-c7ff-4f91-8374-f8d244435023" class="bulleted-list"><li style="list-style-type:square">Property Script<ul id="64db7935-d732-4bc9-8a2e-f712fcde3465" class="bulleted-list"><li style="list-style-type:disc">Colored Property Script</li></ul><ul id="1d58d5d2-5207-480b-9297-35a16c624561" class="bulleted-list"><li style="list-style-type:disc">Station Property Script</li></ul><ul id="90203dad-f2a8-4f1d-8e23-0bf3b2911503" class="bulleted-list"><li style="list-style-type:disc">Utility Property Script</li></ul></li></ul></li></ul></li></ul><ul id="9ced786a-de7b-47ac-b9bd-53e16423eb3f" class="bulleted-list"><li style="list-style-type:disc">Function Scripts:<ul id="6d6f33b5-2cf0-46bf-8a63-8c291a6529d3" class="bulleted-list"><li style="list-style-type:circle">Board Navigation Script</li></ul><ul id="308c11c5-c4ab-4fb9-bd6e-35326deb2f56" class="bulleted-list"><li style="list-style-type:circle">Buy Sell Currency Script</li></ul><ul id="481ed06d-677a-4382-b1f5-5d973ecdc6e7" class="bulleted-list"><li style="list-style-type:circle">Create Local Game Menu Script</li></ul><ul id="882e5c58-1730-4efb-a581-7328f9cc5ce1" class="bulleted-list"><li style="list-style-type:circle">Dice Script</li></ul><ul id="9866f13e-58f6-40e3-b608-cb8383cc0938" class="bulleted-list"><li style="list-style-type:circle">Dice Roll Button Script</li></ul><ul id="4f0d3a81-89b1-4e61-8bf0-bf9a5cd1d5aa" class="bulleted-list"><li style="list-style-type:circle">End Game Script</li></ul><ul id="b7c9e53e-9728-4fdc-8b98-c18ddbfeb584" class="bulleted-list"><li style="list-style-type:circle">Game Script</li></ul><ul id="a9301669-9f0f-4fe8-b22e-1c98a6ec6f9b" class="bulleted-list"><li style="list-style-type:circle">Main Menu Script</li></ul><ul id="2ae3e587-8a20-4ccd-a863-1c24801015f1" class="bulleted-list"><li style="list-style-type:circle">Turn Handler Script</li></ul><ul id="beb4ac60-0467-4b25-8fdb-89d047e78aa5" class="bulleted-list"><li style="list-style-type:circle">Turn Timer Script</li></ul><ul id="4fff365d-436b-45a5-9951-e0c6b71b1934" class="bulleted-list"><li style="list-style-type:circle">Dice Check Zone Script</li></ul><ul id="d96725c1-b7cc-4d8a-ba44-102e72b8fef7" class="bulleted-list"><li style="list-style-type:circle">Move and Rotate on Key Press Script</li></ul><ul id="4e87f69c-1ac4-4f91-93a5-522a409821c9" class="bulleted-list"><li style="list-style-type:circle">Zone Detect Script</li></ul><ul id="3da6b7a7-023f-441f-af0b-418d8e039d7f" class="bulleted-list"><li style="list-style-type:circle">Property Image Reset Script</li></ul></li></ul><ul id="67b68e0c-d74a-45c9-b120-e197510fef43" class="bulleted-list"><li style="list-style-type:disc">Addition to out own scripts, we also used unities built in package and modules to create UI and other functionalities. These were TMP (Text Mesh Pro), URP (Universal Render Pipeline), general Unity UI packages, Skybox etc.</li></ul><ul id="b959ccfb-3985-462f-b0f4-4b9dd8a6064c" class="bulleted-list"><li style="list-style-type:disc">Throughout the project, we had 12 tasks given out to group members in total. All of these tasks required unit test before combining them to create bigger architectures of the game. We have listed the mocks of all these unit tests with their related source code artifacts. </li></ul><ul id="0fbb2ee2-11a3-4329-80e2-e2f6f179922e" class="bulleted-list"><li style="list-style-type:disc">The source code artifacts in out cases our scripts and packages/modules. We have listed each unit testing description with a source code artifact from the project. This means that these artifacts were in use and needed in the duration of the tests.</li></ul><ul id="9f139bbc-5a32-4b79-87bd-8bdb9220ef2b" class="bulleted-list"><li style="list-style-type:disc">Packages like URP and Skybox are used throughout the making of the entire game so they are related to the all the code artifacts.</li></ul><h3 id="f2a40b16-7660-4bd3-a0fd-c5e51b0ce6c6" class="">Dice Roll System</h3><table id="3449d24c-e421-4c54-8d4a-ac8cb1722f30" class="simple-table"><thead><tr id="cf42c6be-4703-4898-adc9-165bb3abb2a9"><th id="[jRI" class="simple-table-header">Tester:    </th><th id="WxXU" class="simple-table-header">Date of Test: 19/12/2021</th></tr></thead><tbody></tbody></table><table id="ac4ade2d-531e-4c99-818e-927ee587d08f" class="simple-table"><thead><tr id="c8553a8e-5893-4157-b5a3-632c72fc51fe"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="c5598049-a6e1-4acf-8324-fd68907bf635"><td id="p~CE">1</td><td id="sG|M">Dice roll using gravity</td><td id="IT`]">Random dice result</td><td id="Ey=C">Dice result not random</td><td id="p_:a">Change Dice weight</td><td id="xT}s">Dice Script
+Dice Roll Button Script</td></tr><tr id="990aefe9-c632-4948-b371-be297d3eac59"><td id="p~CE">2</td><td id="sG|M">Dice roll using different weight</td><td id="IT`]">Random dice result</td><td id="Ey=C">Dice result not random</td><td id="p_:a">Add force to the dices</td><td id="xT}s">Dice Script
+Dice Roll Button Script</td></tr><tr id="557e8bbf-9134-44dd-8697-5d5b3ea4a282"><td id="p~CE">3</td><td id="sG|M">Dice roll using force</td><td id="IT`]">Random dice result</td><td id="Ey=C">Dice result a little random</td><td id="p_:a">Add torque to the dic</td><td id="xT}s">Dice Script
+Dice Roll Button Script</td></tr><tr id="4de6ecfd-a779-4a5b-9fd2-92f519a063f6"><td id="p~CE">4</td><td id="sG|M">Dice roll using force and torque</td><td id="IT`]">Random dice result</td><td id="Ey=C">Dice result is random</td><td id="p_:a">Add collision detectors</td><td id="xT}s">Dice Script
+Dice Roll Button Script</td></tr><tr id="977fbf59-a026-40b6-afda-1e771abe9d6b"><td id="p~CE">5</td><td id="sG|M">Dice Roll with collision detectors</td><td id="IT`]">Printing random dice results</td><td id="Ey=C">Dice result is random and is printed</td><td id="p_:a">None</td><td id="xT}s">Dice Script
+Dice Roll Button Script</td></tr></tbody></table><h3 id="da3bcacf-fbd0-49f2-85b9-1a88808081da" class="">Setting Up Game Board</h3><table id="51026977-439d-4351-9b43-338544a2f855" class="simple-table"><thead><tr id="15186055-f48f-400b-a90e-39acc8efcae4"><th id="[jRI" class="simple-table-header">Tester:   </th><th id="WxXU" class="simple-table-header">Date of Test: 19/12/2021</th></tr></thead><tbody></tbody></table><table id="f69569d9-e9e5-434c-ab6e-b087dda12dcf" class="simple-table"><thead><tr id="bcaa3f60-5b4a-4fb6-bc61-e4dbb3ad8434"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="a92b4486-c586-4e47-982b-6ac2bbd0c40a"><td id="p~CE">1</td><td id="sG|M">Board with simple game objects</td><td id="IT`]">“Result: Zone detected”</td><td id="Ey=C">“Zone not detected”</td><td id="p_:a">Add collision
+detectors</td><td id="xT}s">Zone Detect Script
+Dice Check Zone Script</td></tr><tr id="f585ffa1-a743-4236-8f1c-a719fd3a0d47"><td id="p~CE">2</td><td id="sG|M">Board with collision detectors</td><td id="IT`]">“Zone: 5”</td><td id="Ey=C">“Zone not printed”</td><td id="p_:a">Add trigger 
+colliders to object</td><td id="xT}s">Zone Detect Script
+Dice Check Zone Script</td></tr><tr id="ca52fd65-cf8d-496f-979b-528a3fca738d"><td id="p~CE">3</td><td id="sG|M">Board with colliding object</td><td id="IT`]">“Zone: 5, player in designated position”</td><td id="Ey=C">“Zone: 5, player not in designated position”</td><td id="p_:a">Fix point centers for objects with Id</td><td id="xT}s">Zone Detect Script
+Dice Check Zone Script</td></tr><tr id="55339cc4-407c-4987-9507-a62f534f8af4"><td id="p~CE">4</td><td id="sG|M">Prefab board object with Id</td><td id="IT`]">“Zone: 5, player in designated position”</td><td id="Ey=C">“Zone: 5, player in designated position”</td><td id="p_:a">None</td><td id="xT}s">Zone Detect Script
+Dice Check Zone Script
+Dice Script
+Dice Roll Button Script</td></tr></tbody></table><h3 id="2dfa6ed7-3d26-4f17-87ba-962d298750ea" class="">Movement of Player Pieces</h3><table id="cc0a2e36-79bf-4552-ad1f-52a01a743430" class="simple-table"><thead><tr id="35b746ad-dbb1-460e-b731-ec574ac21954"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 19/12/2021</th></tr></thead><tbody></tbody></table><table id="9b3ea266-a400-4869-a5ed-7138b18c3908" class="simple-table"><thead><tr id="1f477f6d-faaf-4565-8064-a3f0f34549e4"><th id="R=L;" class="simple-table-header">Test Number</th><th id="~mqY" class="simple-table-header">Test Description</th><th id="}&lt;&gt;J" class="simple-table-header">Expected Result</th><th id="LXe}" class="simple-table-header">Actual Result</th><th id="&lt;Z\I" class="simple-table-header">Fix Action</th><th id="g\Cq" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="49cccf70-bb15-4788-a533-61a8bc3d42f9"><td id="R=L;">1</td><td id="~mqY">Movement testing of pawns</td><td id="}&lt;&gt;J">Straight movement for a given distance when an action triggered</td><td id="LXe}">Straight movement accomplished</td><td id="&lt;Z\I">None</td><td id="g\Cq">Move and Rotate on Key Press Script</td></tr><tr id="f28f1736-f13a-445d-829e-c3846e9674bc"><td id="R=L;">2</td><td id="~mqY">Rotation testing of pawns</td><td id="}&lt;&gt;J">Rotating for a given angle when an action triggered</td><td id="LXe}">Rotation movement accomplished, but speed tweaks required</td><td id="&lt;Z\I">Adapt rotation speed</td><td id="g\Cq">Move and Rotate on Key Press Script</td></tr><tr id="68415fc3-e719-43d5-9532-76a0f0f3dc3b"><td id="R=L;">3</td><td id="~mqY">Movement and Rotation combined tests</td><td id="}&lt;&gt;J">For a given action both move and rotate</td><td id="LXe}">The rotation occurs at the wrong time</td><td id="&lt;Z\I">Change the rotation trigger mechanism</td><td id="g\Cq">Move and Rotate on Key Press Script</td></tr><tr id="5ecc38f4-511f-4437-a73a-ee2eeb8a99dc"><td id="R=L;">4</td><td id="~mqY">UI elements input validation test</td><td id="}&lt;&gt;J">For a given input, the UI should handle the corrupted information</td><td id="LXe}">Some inputs break the UI design</td><td id="&lt;Z\I">Add a layer of validation</td><td id="g\Cq">Move and Rotate on Key Press Script</td></tr><tr id="a41123d0-d665-408a-8918-00c56e228caf"><td id="R=L;">5</td><td id="~mqY">Navigational elements tests</td><td id="}&lt;&gt;J">Every navigation button/link should work consistently</td><td id="LXe}">Navigation buttons were working consistently</td><td id="&lt;Z\I">None</td><td id="g\Cq">Move and Rotate on Key Press Script</td></tr><tr id="b475bb49-8414-4394-b8dd-2e2c66252ec3"><td id="R=L;">6</td><td id="~mqY">Generation of error logs</td><td id="}&lt;&gt;J">If an exception thrown during the game play, the system should record a log about the issue</td><td id="LXe}">Most of the exceptions handled, but some of them not catching</td><td id="&lt;Z\I">Add error logs for not catching errors</td><td id="g\Cq">Move and Rotate on Key Press Script</td></tr></tbody></table><h3 id="5a02b234-f281-4e20-aff9-99c08e1e126b" class="">Class Scripts Coding</h3><table id="7636865e-5114-442f-b576-a6ca48d187c8" class="simple-table"><thead><tr id="c3b34af4-6d0a-4a05-956d-33c1ab8d811e"><th id="[jRI" class="simple-table-header">Tester:   </th><th id="WxXU" class="simple-table-header">Date of Test: 27/12/2021</th></tr></thead><tbody></tbody></table><table id="ab18fb3a-f541-44b3-b680-a6094226ae2a" class="simple-table"><thead><tr id="21abe6e4-b28f-4b1e-bcf1-1cffb9ffda58"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="d6a51dae-0a26-4def-82cc-b623975860a6"><td id="p~CE">1</td><td id="sG|M">Zone class test</td><td id="IT`]">Zones on the game board are type of Zone class</td><td id="Ey=C">Zones on the game board can successfully be type of Zone class</td><td id="p_:a">None</td><td id="xT}s">Zone Script</td></tr><tr id="13e25982-4f1a-4563-848b-c9114842f1a1"><td id="p~CE">2</td><td id="sG|M">Property class test</td><td id="IT`]">Property zones on the game board are type of Property class</td><td id="Ey=C">Property zones on the game board can successfully be type of Property class</td><td id="p_:a">None</td><td id="xT}s">Property Script</td></tr><tr id="58fe9339-0dc2-456b-bd65-470245505fe6"><td id="p~CE">3</td><td id="sG|M">Property rent characteristics test</td><td id="IT`]">Different type of properties can have different rent characteristics</td><td id="Ey=C">Colored, utility and station properties cannot have different rent characteristic</td><td id="p_:a">Create three classes, ColoredProperty, UtilityProperty and StationProperty which inherit from Property class</td><td id="xT}s">Property Script</td></tr><tr id="27e3ae17-065b-4779-b7b4-f5c0ed8ca105"><td id="p~CE">4</td><td id="sG|M">Property rent characteristics test with ColoredProperty, UtilityProperty and StationProperty</td><td id="IT`]">Different type of properties can have different rent characteristics</td><td id="Ey=C">Different type of properties can successfully have different rent characteristic</td><td id="p_:a">None</td><td id="xT}s">Property Script
+ColoredProperty Script
+UtilityProperty Script
+StationProperty Script</td></tr><tr id="b7591455-d6bd-4dac-bd04-4f5d8c3a7a5e"><td id="p~CE">5</td><td id="sG|M">Exchange station rate calculation test</td><td id="IT`]">Exchange stations randomly changes the current exchange rates when players land</td><td id="Ey=C">Exchange stations affect the exchange rates independent from the current rates</td><td id="p_:a">Exchange rate calculation should use the current exchange rate</td><td id="xT}s">Exchange Station Script</td></tr><tr id="192b76f8-6742-4952-b108-e353a0a8255e"><td id="p~CE">6</td><td id="sG|M">Exchange station rate calculation with current rates test</td><td id="IT`]">Exchange stations randomly changes the current exchange rates when players land</td><td id="Ey=C">Exchange stations randomly changes the current exchange rates when players land successfully</td><td id="p_:a">None</td><td id="xT}s">Exchange Station Script</td></tr></tbody></table><h3 id="e545171c-fbea-457a-90f9-73865a36bcd5" class="">Turn Operation In One Turn</h3><table id="860d2112-cbab-476e-92e7-4405d290f1cd" class="simple-table"><thead><tr id="f113f682-b274-4952-8994-1ef19c9a9a07"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 27/12/2021</th></tr></thead><tbody></tbody></table><table id="231a491f-cb8d-4b9e-aa41-5c6a56eef301" class="simple-table"><thead><tr id="eb44446f-b6b9-420d-a12a-06ada3bbb374"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="fe7ee225-fadd-4d4f-8604-1e6e19ea1663"><td id="p~CE">1</td><td id="sG|M">Dice roll with movement test</td><td id="IT`]">Player piece moves according to dice result</td><td id="Ey=C">One dice is result is not adding to total</td><td id="p_:a">Correct code to comply with Unity engine mechanics</td><td id="xT}s">Dice Roll Button Script
+Dice Roll Script
+Board Navigation Script</td></tr><tr id="9826a050-ca46-4b1e-b7a7-8436658ed6c5"><td id="p~CE">2</td><td id="sG|M">Dice roll with movement test</td><td id="IT`]">Player piece moves according to dice result</td><td id="Ey=C">Player piece doesn’t rotate on board corners</td><td id="p_:a">Add rotation function to Board Navigation Script</td><td id="xT}s">Dice Roll Button Script
+Dice Roll Script
+Board Navigation Script</td></tr><tr id="b633c1ed-330b-4672-9c9e-c6d8ae53e250"><td id="p~CE">3</td><td id="sG|M">Dice roll with movement test</td><td id="IT`]">Player piece moves according to dice result</td><td id="Ey=C">Player piece moves according to dice result</td><td id="p_:a">None</td><td id="xT}s">Dice Roll Button Script
+Dice Roll Script
+Board Navigation Script</td></tr><tr id="af96c4a3-ec84-4e11-a489-932b1564728a"><td id="p~CE">4</td><td id="sG|M">Dice roll, movement and zone detection combination test</td><td id="IT`]">Dice roll, movement and zone detection are working together properly</td><td id="Ey=C">Dice roll, movement and zone detection are working together properly</td><td id="p_:a">None</td><td id="xT}s">Zone Detect
+Dice Roll Button
+Dice Roll
+Dice Check Zone
+Board Navigation</td></tr></tbody></table><h3 id="1f70d762-490e-43e0-a8b5-4a2a1cb26490" class="">Turn Change System</h3><table id="e747254a-736e-41a9-b492-c9f6926ebba0" class="simple-table"><thead><tr id="bea8a582-89da-4a32-bebc-0d2001817c04"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 27/12/2021</th></tr></thead><tbody></tbody></table><table id="5953162f-d2ee-4cc7-b588-3ce3f78add47" class="simple-table"><thead><tr id="07916401-8e87-4b89-b197-d2aa761f6696"><th id="R=L;" class="simple-table-header">Test Number</th><th id="~mqY" class="simple-table-header">Test Description</th><th id="}&lt;&gt;J" class="simple-table-header">Expected Result</th><th id="LXe}" class="simple-table-header">Actual Result</th><th id="&lt;Z\I" class="simple-table-header">Fix Action</th><th id="hSaU" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="1a493286-7126-4bf9-82e5-77f9b06e000b"><td id="R=L;">1</td><td id="~mqY">Turn change system test</td><td id="}&lt;&gt;J">Each player takes turn sequentially</td><td id="LXe}">Each players takes its turn correctly</td><td id="&lt;Z\I">None</td><td id="hSaU">Turn Handler Script</td></tr><tr id="d5b550af-71f9-4a71-bc26-99df0fdb9740"><td id="R=L;">2</td><td id="~mqY">Turn timer test</td><td id="}&lt;&gt;J">After the specified time ends the turn should change</td><td id="LXe}">After time ends turn changes successfully</td><td id="&lt;Z\I">None</td><td id="hSaU">Turn Timer Script</td></tr></tbody></table><h3 id="d2a1ce16-5106-4f1e-b1d9-4a9d086d3a06" class="">Endgame Screen Design and Functions</h3><table id="cb2ce9e5-64b7-47e5-a6ee-5b3b5c5126d2" class="simple-table"><thead><tr id="a8eeb459-4e36-4b68-b916-1a7b61be5af3"><th id="[jRI" class="simple-table-header">Tester:   </th><th id="WxXU" class="simple-table-header">Date of Test: 09/01/2022</th></tr></thead><tbody></tbody></table><table id="e384dabf-d338-42c2-9f9a-767e93da1753" class="simple-table"><thead><tr id="de41ce6b-955a-414f-b72b-0a32169749bb"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="94e88739-b37b-44e3-bf1a-08a73562b690"><td id="p~CE">1</td><td id="sG|M">End game winner designation test</td><td id="IT`]">Winner is printed, either the monopoly or the team</td><td id="Ey=C">Monopoly is printed regardless of who won the game</td><td id="p_:a">Game script and End Game script should be edited to be sequentially</td><td id="xT}s">End Game Script
+Game Script
+TMP</td></tr><tr id="a52d74c9-a541-4906-ba73-5d3bf1e99db7"><td id="p~CE">2</td><td id="sG|M">End game winner designation test with sequential approach</td><td id="IT`]">Winner is printed, either the monopoly or the team</td><td id="Ey=C">Winner is printed successfully</td><td id="p_:a">None</td><td id="xT}s">End Game Script
+Game Script
+TMP</td></tr><tr id="53e3d4a6-434b-49b5-b7ba-609395ee6715"><td id="p~CE">3</td><td id="sG|M">Winner properties display test</td><td id="IT`]">Winner’s properties are printed dynamically and in order</td><td id="Ey=C">Winner’s properties are printed on fixed positions</td><td id="p_:a">End game script should mask the not owned properties and arrange margins for the owned properties</td><td id="xT}s">End Game Script
+TMP</td></tr><tr id="1b65d22c-bbfe-4dd6-b282-87efecfeafd3"><td id="p~CE">4</td><td id="sG|M">Winner properties display with arranged masks and margins test</td><td id="IT`]">Winner’s properties are printed dynamically and in order</td><td id="Ey=C">Winner’s properties are printed dynamically and in order </td><td id="p_:a">None</td><td id="xT}s">End Game Script
+TMP</td></tr></tbody></table><h3 id="7698bff1-a7bc-49ab-b133-8fda1790291d" class="">In-game HUD Design and Functions</h3><table id="215d8738-f311-45d3-8080-b723b0afdea2" class="simple-table"><thead><tr id="80de14f7-9a5d-41a4-a850-e95254391ef8"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 09/01/2022</th></tr></thead><tbody></tbody></table><table id="320b9b29-ad44-44ea-820c-0327847025f1" class="simple-table"><thead><tr id="0db94624-9272-421d-8fa8-4617818959bf"><th id="R=L;" class="simple-table-header">Test Number</th><th id="~mqY" class="simple-table-header">Test Description</th><th id="}&lt;&gt;J" class="simple-table-header">Expected Result</th><th id="LXe}" class="simple-table-header">Actual Result</th><th id="&lt;Z\I" class="simple-table-header">Fix Action</th><th id="hSaU" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="b4d998bb-4507-4956-bc59-925f859d149a"><td id="R=L;">1</td><td id="~mqY">UI elements input validation test</td><td id="}&lt;&gt;J">For a given input, the UI should handle the corrupted information.</td><td id="LXe}">Remaining time and turn status break the Design</td><td id="&lt;Z\I">Add turn timer and UI fixes</td><td id="hSaU">Turn Handler Script
+Turn Timer Script
+TMP</td></tr><tr id="76a7ca44-1c57-4925-807b-e7872968b182"><td id="R=L;">2</td><td id="~mqY">Property Tests</td><td id="}&lt;&gt;J">Bought properties are shown in the HUD with their respective colors</td><td id="LXe}">Properties have the same color</td><td id="&lt;Z\I">Make prefab of properties and change color of the owned ones</td><td id="hSaU">Turn Handler Script
+Turn Timer Script
+TMP</td></tr><tr id="19b74f81-d4bc-4a53-aa12-f47776132cd0"><td id="R=L;">3</td><td id="~mqY">Property tests for each player</td><td id="}&lt;&gt;J">Bought properties are shown in the HUD with their respective colors</td><td id="LXe}">Properties with their respective colors are displayed properly</td><td id="&lt;Z\I">None</td><td id="hSaU">Turn Handler Script
+Turn Timer Script
+TMP</td></tr><tr id="587a3722-476d-4a86-9858-d2b909c40c98"><td id="R=L;">4</td><td id="~mqY">Test players names are shown</td><td id="}&lt;&gt;J">Player Names are shown correctly</td><td id="LXe}">Player Names are shown correctly</td><td id="&lt;Z\I">None</td><td id="hSaU">TMP</td></tr></tbody></table><h3 id="fd2c1f8e-8f47-4c42-96e6-fe55dab14686" class="">Main Menu Design and Function</h3><table id="814e7012-b4a8-4538-b0a1-620a085efc5a" class="simple-table"><thead><tr id="6e8b6c4c-9f68-4b90-8561-44d1739a08f2"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 10/01/2022</th></tr></thead><tbody></tbody></table><table id="3e1e3646-5a6d-478c-b713-3b267d902e26" class="simple-table"><thead><tr id="f3600021-bdf2-4b45-8586-abacebcdb1b7"><th id="R=L;" class="simple-table-header">Test Number</th><th id="~mqY" class="simple-table-header">Test Description</th><th id="}&lt;&gt;J" class="simple-table-header">Expected Result</th><th id="LXe}" class="simple-table-header">Actual Result</th><th id="&lt;Z\I" class="simple-table-header">Fix Action</th><th id="hSaU" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="d4c78489-c6a7-4b8e-91b7-021bc9ea0b7d"><td id="R=L;">1</td><td id="~mqY">UI elements input validation test</td><td id="}&lt;&gt;J">For a given input, the UI should handle the corrupted information.</td><td id="LXe}">Some inputs break the UI design</td><td id="&lt;Z\I">Add a layer of validation</td><td id="hSaU">Main Menu Script
+TMP</td></tr><tr id="a331e25c-9c68-4cdb-a81b-203207902905"><td id="R=L;">2</td><td id="~mqY">Navigational elements tests</td><td id="}&lt;&gt;J">Every navigation button/link should work consistently</td><td id="LXe}">Navigation buttons working consistently</td><td id="&lt;Z\I">None</td><td id="hSaU">Main Menu Script
+TMP</td></tr><tr id="e8017341-43b5-4f42-8507-d369b263ca4e"><td id="R=L;">3</td><td id="~mqY">Generation of error logs</td><td id="}&lt;&gt;J">If an exception is thrown during the gameplay, the system should record a log about the issue</td><td id="LXe}">Most of the exceptions were handled, but some of them not catching</td><td id="&lt;Z\I">Add error logs for not catching errors</td><td id="hSaU">Main Menu Script
+TMP</td></tr></tbody></table><h3 id="2607a1b3-5357-478a-b533-f01556b9fa58" class="">Property Ownage System</h3><table id="5b2aacfe-80e4-489d-ba6d-2d16c6c46645" class="simple-table"><thead><tr id="335bf324-8d2d-4160-8d6d-338497500610"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 10/01/2022</th></tr></thead><tbody></tbody></table><table id="72482685-6530-4b3a-bd4a-51a82f2d47ab" class="simple-table"><thead><tr id="7c61c3b3-5fe6-40a6-880c-2c24e7c8968e"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="b015385b-8c7f-424c-8dab-67ee52f70c51"><td id="p~CE">1</td><td id="sG|M">Check if zone is a buyable property</td><td id="IT`]">“Property can be bought”</td><td id="Ey=C">Nothing printed</td><td id="p_:a">Fix property zone script for detection</td><td id="xT}s">Property Script</td></tr><tr id="c57a8296-082d-45b1-b6c8-08f7c6d9a5eb"><td id="p~CE">2</td><td id="sG|M">Check if zone is owned</td><td id="IT`]">Print the owners name</td><td id="Ey=C">Nothing printed</td><td id="p_:a">Owner setup for in Player class has been fixed</td><td id="xT}s">Player Script</td></tr><tr id="f0812c26-7773-4e7f-97bb-c0bb6f3e2d8e"><td id="p~CE">3</td><td id="sG|M">Pay the property’s price to the bank by using Buy Property</td><td id="IT`]">Show bought property on Player’s Properties</td><td id="Ey=C">Property would not show in Properties</td><td id="p_:a">Bought property was added to Player’s Properties properly.</td><td id="xT}s">Turn Handler Script</td></tr></tbody></table><h3 id="20d35d95-95c5-4f64-bd18-f77bee7c937f" class="">Rent Payment System</h3><table id="6781c93a-9b20-4dfb-b771-495ca7dfe517" class="simple-table"><thead><tr id="95459d14-2f72-4c18-803b-0cc9d536ce13"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 10/01/2022</th></tr></thead><tbody></tbody></table><table id="36ad29b9-aff2-41e7-960b-e531ff5bbb09" class="simple-table"><thead><tr id="ba0691f3-1368-4d40-96a7-afff7a5fd3a9"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="cb433286-0e72-4110-bf4b-05a15ca375db"><td id="p~CE">1</td><td id="sG|M">Check If rent will be paid in current property</td><td id="IT`]">“My property” or “Opponent Property”</td><td id="Ey=C">Nothing printed</td><td id="p_:a">Fix Property owner settings</td><td id="xT}s">Property Script</td></tr><tr id="a4ed593e-f97a-4d06-8477-7637c5b17da4"><td id="p~CE">2</td><td id="sG|M">Check the rent amount to be paid</td><td id="IT`]">Print the payment amount</td><td id="Ey=C">Rent amounts were not correct for sets</td><td id="p_:a">Fix color sets</td><td id="xT}s">Colored Property Script</td></tr><tr id="fbc91721-3cc4-4a8c-9dac-d4dcb9ca0cd2"><td id="p~CE">3</td><td id="sG|M">Rent payment for current zone</td><td id="IT`]">Transfer money from current player’s pocket to property owner’s pocket</td><td id="Ey=C">Owner’s money would not increase</td><td id="p_:a">Fix money transaction</td><td id="xT}s">Turn Handler Script</td></tr></tbody></table><h3 id="ee9984e1-fd49-4bf1-8542-827d3c96ce98" class="">Exchange Station Implementation</h3><table id="f2242346-5deb-4708-8cae-370ea8d126ff" class="simple-table"><thead><tr id="1d72c5c0-ecc1-422b-aa4a-364c59f4777f"><th id="[jRI" class="simple-table-header">Tester:  </th><th id="WxXU" class="simple-table-header">Date of Test: 10/01/2022</th></tr></thead><tbody></tbody></table><table id="26e2f8ca-087b-4475-bc5c-ebae059b6e26" class="simple-table"><thead><tr id="524ac240-ecbb-484f-bfad-fbe5f5b99f7d"><th id="p~CE" class="simple-table-header">Test Number</th><th id="sG|M" class="simple-table-header">Test Description / Input</th><th id="IT`]" class="simple-table-header">Expected Result</th><th id="Ey=C" class="simple-table-header">Actual Result</th><th id="p_:a" class="simple-table-header">Fix Action</th><th id="xT}s" class="simple-table-header">Source Code Artifacts</th></tr></thead><tbody><tr id="08d6013d-c65e-405e-b7fe-ace699087384"><td id="p~CE">1</td><td id="sG|M">Exchange Station with No Function</td><td id="IT`]">“On exchange station!”</td><td id="Ey=C">Nothing Printed</td><td id="p_:a">Add new zone class</td><td id="xT}s">Exchange Station Script</td></tr><tr id="0deb12c5-81e4-491e-807d-17e19b6ae89e"><td id="p~CE">2</td><td id="sG|M">Exchange Station with a Menu Pop-up</td><td id="IT`]">Show a Pop-up for exchanging money</td><td id="Ey=C">No pop-up shown</td><td id="p_:a">Canvas elements connected with script</td><td id="xT}s">Turn Handler Script</td></tr><tr id="85e48098-ee61-4526-9951-2fd9f9abb8af"><td id="p~CE">3</td><td id="sG|M">Exchange Station with full utility</td><td id="IT`]">Making money exchange possible</td><td id="Ey=C">Exchange system works, a simple mathematical error found in calculation</td><td id="p_:a">Calculation error fix</td><td id="xT}s">Exchange Station Script</td></tr></tbody></table><h3 id="c9c2e472-351c-47b4-80e5-41d5f412e09a" class="">Testing Tool(s)</h3><p id="cd5aa961-2770-4b04-912f-9f37ba905326" class="">For our tests, we don’t use extra testing tools since we use Unity. It is really easy to compile our source code and be able to see both the user interface and the terminal log for our test. Since Unity provides all that is needed, we use Unity standard compilation, UI and terminal for testing purposes.</p><h1 id="d36437ab-99fa-4e58-a0a5-6275f4bd8804" class="">3. Additional Tests</h1><h2 id="924b52fc-37a7-4bbd-adc7-567a3dd2a16e" class="">3.1 Security Testing</h2><ul id="c5dada15-30df-4c8e-8348-84aaa85b492c" class="bulleted-list"><li style="list-style-type:disc">Security testing is a software testing mechanism that checks whether the system keeps sensitive data in a secure manner that prevents the information from getting into any intruder&#x27;s hands or not. This testing is meant to reveal the weaknesses of the system and get in the way of any possible compromisations and data loss.</li></ul><ul id="770e22b7-fefd-4333-9dfe-28f6281c5e73" class="bulleted-list"><li style="list-style-type:disc">“Anti-Cheat Toolkit 2021” from Unity Asset Store can be used to test the general security of the game. This tool is used to discourse cheating, protect data, detect time cheating performances, etc. It is an all-around tool to check for any kind of cheat in a game. Test cases that can be used are listed below.<ul id="8e304917-cae9-49de-96c8-dd5e920f623d" class="bulleted-list"><li style="list-style-type:circle"><strong>Protection of Code integrity:</strong> The tool is able to check code with the hashes generated, which makes sure the compiled code is not altered. This is used to test the integrity of the code.</li></ul><ul id="a9ad5bdb-efa2-4ea8-bec9-c8e90edba6ad" class="bulleted-list"><li style="list-style-type:circle"><strong>Protection of Variables in Memory:</strong> Each player has many different variables and data that are kept in a game session such as money, properties, houses, etc. Protecting variables in the game session is important so that users can not change these important values to alter with the game. The tool can be used to check whether these types of altercations are done in the game.</li></ul><ul id="d2d527d0-f06c-496b-a9ff-47f8d0414a64" class="bulleted-list"><li style="list-style-type:circle"><strong>Detection of Time Cheats:</strong> The game is run on a turn-based system that includes a timer for each turn. This tool can be used to test the turn timer to detect time cheats that might occur in-game where a user alters the time given for each turn. </li></ul><ul id="ad83732d-3561-441b-a685-8f5ea5e64fb9" class="bulleted-list"><li style="list-style-type:circle"><strong>Detection of Internet Attacks: </strong>It is important that the players get to play the game normally and not have to deal with attempts that would alter their state of connection to the game. The tool is also able to detect general cheating attempts such as kicking players from the game, DDoS attacks, etc. Such tests can be done to kick/ban players from the game.</li></ul><ul id="10097fd7-2b03-4303-94cb-09f46990b87c" class="bulleted-list"><li style="list-style-type:circle"><strong>General Security Measures for Our Game:</strong> The tool kit&#x27;s source code is provided to users so its functionalities can be expanded to further include monopoly-specific anti-cheat functionalities.</li></ul></li></ul><h2 id="7a027d50-56ea-4ae4-bf15-8ac7ca6815ba" class="">3.2 Performance Testing</h2><ul id="fb9ddb7a-02a3-4472-904d-f00fc7217d84" class="bulleted-list"><li style="list-style-type:disc">Performance testing is the most important type of testing for a game. If a game is not optimized and works on low frame rates, playing the game is almost impossible.</li></ul><ul id="cd40a46d-d5d1-404b-91d4-78240494e828" class="bulleted-list"><li style="list-style-type:disc">Unity has built-in tools for testing in-game performance for developed games. These tools are used for optimizing FPS values, memory allocation, CPU/GPU usage, etc.</li></ul><ul id="96f4b9ed-6e3f-4186-b52f-ea0a7468a195" class="bulleted-list"><li style="list-style-type:disc">We have used Unity Profiler: A tool that shows which part of the game uses which resource and how much. It’s simply an all-in-one testing tool to see what goes wrong. Test cases that we used with Unity Profiler are listed below.<ul id="42dc3bbc-fe33-4cd1-9346-b371eda7853b" class="bulleted-list"><li style="list-style-type:circle"><strong>Script Optimization:</strong> Using Profiler, we have analyzed our FPS (Frames Per Second) values. The values were mostly ideal (500+ FPS). But some scripts in our code spiked the CPU Usage and caused FPS drops. We have analyzed and tested these scripts using Profiler.</li></ul><ul id="021684a8-636a-49fc-b159-a9f128aea6f7" class="bulleted-list"><li style="list-style-type:circle"><strong>Physics Engine Performance:</strong> Dice roll system used 3D Physics and Physics use a lot of CPU if not optimized well. Unity Profiler also gives us the data of Physics Engine usage, so we also tested our Dice physics performance.</li></ul><ul id="4f345ac6-fcb2-41d1-9ac1-6c5a0f4a95b5" class="bulleted-list"><li style="list-style-type:circle"><strong>Memory Usage:</strong> Memory allocation is another piece of information that Profiler provides. We have tested if there is a memory leak or not using the Profiler.</li></ul><ul id="de7ca007-da20-4ebc-bda7-b4117b7e47e8" class="bulleted-list"><li style="list-style-type:circle"><strong>GPU and CPU Usage:</strong> For a 3D game, rendering is the main issue for performance issues. GPU and CPU usage should be kept low with optimal scripting methods. We have tested our scripts and their optimization using Profiler’s CPU and GPU usage data.</li></ul></li></ul><ul id="da7cb6eb-72ab-426e-8124-3daf453a9e93" class="bulleted-list"><li style="list-style-type:disc">Another tool used in performance testing was Frame Debugger, a built-in tool in Unity. Frame Debugger is used for optimizing the visual data of the game. It shows the rendering order on each frame, and how much each renders costs individually. Test cases that we used with Frame Debugger are listed below.<ul id="74afd7a5-23b4-4a3f-8c8c-7a88d598580e" class="bulleted-list"><li style="list-style-type:circle"><strong>GPU Usage for Game Visuals:</strong> We have tested FPS values and GPU usage for each rendered visual in our game. These included but were not limited to:<ul id="ec294584-3db1-4038-b38d-636f69b1e1b4" class="bulleted-list"><li style="list-style-type:square">Dice visuals</li></ul><ul id="d3ec08fc-7e11-4ba9-b384-c54fa6268b52" class="bulleted-list"><li style="list-style-type:square">3D design for the player pawns</li></ul><ul id="e148f917-74d4-464b-8f0c-c52c5ba74c42" class="bulleted-list"><li style="list-style-type:square">Game board</li></ul><ul id="6fcab597-6187-433e-ab55-91f4bfdfaed1" class="bulleted-list"><li style="list-style-type:square">Gamecards</li></ul><ul id="eef4cf9a-b2d5-45a4-a36d-42ea05204f30" class="bulleted-list"><li style="list-style-type:square">Game screens</li></ul></li></ul><ul id="61a503f2-5ddb-49dc-8103-ede25a46731a" class="bulleted-list"><li style="list-style-type:circle"><strong>GPU usage for Game Background:</strong> We also added a new customized Skybox to our game for better background visuals, which would affect the game’s performance. We tested it with a frame debugger if it has a huge effect on our GPU usage.</li></ul></li></ul><h2 id="d375f75b-5f5c-4478-a3e5-80ddad842e3a" class="">3.3 Load/Stress Testing</h2><ul id="df8c3c4a-922e-4e8f-b295-eab184f5d2a1" class="bulleted-list"><li style="list-style-type:disc">Load testing is a type of performance testing mechanism which inspects the system behavior under increasing loads, meaning the number of users, data, operations hours, etc. are reaching maximum values. concurrently active.</li></ul><ul id="dafb7f22-10fe-4465-a58e-714f90cc5fb2" class="bulleted-list"><li style="list-style-type:disc">“Photon Engine” is a “real-time socket server” and a multiplayer game development framework that can be used to test many different performance aspects such as connection analysis, server performance, etc. A photon server can be used to test these aspects. Test cases that can be used are listed below.<ul id="913f3988-fe16-4904-ba92-198392ecc812" class="bulleted-list"><li style="list-style-type:circle"><strong>Session Handling: </strong>Each game session should be able to handle four players. The load of the current users on the system can be tested on photon servers.</li></ul><ul id="a66feece-1a24-4aec-a376-fd0e097430a7" class="bulleted-list"><li style="list-style-type:circle"><strong>Total Room Count:</strong> In a multiplayer web-based scenario, there will be many rooms with each having four players. The performance load of many rooms and users can be tested on photon servers.</li></ul><ul id="66c6b112-25be-4fd0-b4d4-5bf8f92ca9ac" class="bulleted-list"><li style="list-style-type:circle"><strong>Response Time:</strong> With many rooms and players, the load on the system increases. Even with this load, the system should be able to respond to each session in a proper time for the games to continue in normal order. Response time for the game sessions can be tested on the servers.</li></ul><ul id="8a87ea59-673b-4028-9925-20e9fed92c74" class="bulleted-list"><li style="list-style-type:circle"><strong>Session Data:</strong> As the game progresses, the data for each player will continue to accumulate. Players will have more money, properties, houses, etc. The server should be able to handle the game session data throughout the entirety of the game.</li></ul><ul id="7de55550-d7b6-452f-8d54-0ac9a7db2630" class="bulleted-list"><li style="list-style-type:circle"><strong>Session Time:</strong> Monopoly is a fairly long-lasting game. A game of monopoly can average 30 to 90 minutes. With this in mind, the servers should be able to be up and running throughout the entire game without any failures of connection. This can be tested using the photon servers.</li></ul><ul id="a20f7e5a-5209-42e8-b8d1-d673bb3b577e" class="bulleted-list"><li style="list-style-type:circle"><strong>User Interaction:</strong> Throughout the game, players will have to interact with the game using the UI to buy properties, exchange money, roll dice, etc. The server should be able to accept the requests by the users in session in etiquette time. </li></ul></li></ul><h2 id="752b12bf-5306-483a-ba71-6d3f2560634b" class="">3.4 Acceptance Testing</h2><ul id="943f0ff3-9702-4736-aaec-60d750064ce5" class="bulleted-list"><li style="list-style-type:disc">Acceptance testing method was not applicable to our project.</li></ul><h1 id="ff5255e9-1af0-4770-8ac7-bdd8d198cbde" class="">4. Test Results</h1><h3 id="a0805a49-fd89-43cb-a28a-aed9b259f983" class="">4.1 Test Results Report</h3><ul id="0c1a493b-8d3a-4b4e-b089-aa4eed145a22" class="bulleted-list"><li style="list-style-type:disc">We had already discussed in our testing strategy that we used a bottom-up incremental approach and main three used testing methods were.<ul id="c960f7aa-3e01-478d-a844-db7b51d1ede9" class="bulleted-list"><li style="list-style-type:circle">Unit Testing</li></ul><ul id="eb8c1423-2db5-4c6d-8d2b-d5e79ed8d51d" class="bulleted-list"><li style="list-style-type:circle">Integration Testing</li></ul><ul id="ccfb7e16-2a35-422b-a252-70998643a1f0" class="bulleted-list"><li style="list-style-type:circle">System Testing.</li></ul></li></ul><ul id="d45de64c-433c-4560-8c6f-5da036d9c023" class="bulleted-list"><li style="list-style-type:disc">We also mentioned that we used black-box and white-box testing. </li></ul><ul id="f9de065f-1d0b-4aab-895d-3f5813429f1c" class="bulleted-list"><li style="list-style-type:disc">Because our our testing strategy, we chose to calculate our test coverage by matching the test cases to the paths in the use case flows, and finding the ratio of the covered paths to all paths. This is done since matching these tests to paths in our use cases creates and easier to understand of test coverage rather than having to include all the scripts and test tools used.</li></ul><ul id="b1bdc771-4b95-4138-b3c2-d1fd4cc998e0" class="bulleted-list"><li style="list-style-type:disc">We will use the unit tests and black-box/white-box tests we did to match test coverages to paths in our use case diagram. </li></ul><ul id="b357f91e-0ce3-4225-ba53-d050df990637" class="bulleted-list"><li style="list-style-type:disc">For a total of 12 tasks given, our team completed 12 unit test each corresponding to the given task. These unit tests can also be categorized in white-box testing. We can list these unit tests as:<ul id="b18c4dc5-6815-4179-a7b2-cef7ac74e4ab" class="bulleted-list"><li style="list-style-type:circle">Dice roll system</li></ul><ul id="3c1ff0e8-b3dd-4b7f-b759-d351e0b602c0" class="bulleted-list"><li style="list-style-type:circle">Setting up the Game Board</li></ul><ul id="2ab52600-90bb-45d0-8ba3-5adaa41db375" class="bulleted-list"><li style="list-style-type:circle">Movement of Player Pieces</li></ul><ul id="6c4ed368-0f47-4719-8275-d0927c9e6c3b" class="bulleted-list"><li style="list-style-type:circle">Class Scripts coding</li></ul><ul id="ebd3f114-603c-45e6-9a89-a97dec5bee79" class="bulleted-list"><li style="list-style-type:circle">Turn Change System between Players</li></ul><ul id="d91380b2-4162-4836-84a7-7276caf6d3b4" class="bulleted-list"><li style="list-style-type:circle">Turn Operations in one Turn</li></ul><ul id="47c77e5a-02fb-443d-b8f0-0b4893271fc0" class="bulleted-list"><li style="list-style-type:circle">Endgame Screen Design and Functions</li></ul><ul id="7516289d-27f3-4d39-bb42-e38be9beed0f" class="bulleted-list"><li style="list-style-type:circle">In-game HUD Design and Functions</li></ul><ul id="f131c628-3975-4247-9ee6-621578d5df5e" class="bulleted-list"><li style="list-style-type:circle">Main Menu Design and Functions</li></ul><ul id="ccbdee38-e2e3-4765-94ef-d64ae6e5b4ec" class="bulleted-list"><li style="list-style-type:circle">Property Ownage System</li></ul><ul id="30c58754-d6db-4579-bef5-f4d6f8b6daed" class="bulleted-list"><li style="list-style-type:circle">Exchange Station Implementation</li></ul><ul id="8f57ada9-999b-483b-a20a-daaf04c28127" class="bulleted-list"><li style="list-style-type:circle">Rent Payment System</li></ul></li></ul><ul id="c8771ef3-458a-414d-a3fe-c59c15557372" class="bulleted-list"><li style="list-style-type:disc">We also had 10 black-box test. We can list these black-box tests as:<ul id="66bf4ec5-d931-492b-82de-c9a98112db86" class="bulleted-list"><li style="list-style-type:circle">Dice Results</li></ul><ul id="fa7da4e8-36ec-4304-be53-3ede7dbaa0eb" class="bulleted-list"><li style="list-style-type:circle">Rent Amount</li></ul><ul id="c56c62f1-a477-4ced-b30e-34abc18139a0" class="bulleted-list"><li style="list-style-type:circle">Property Price</li></ul><ul id="cfada1d3-9aec-468b-81b0-5335640be224" class="bulleted-list"><li style="list-style-type:circle">Remaining Time</li></ul><ul id="4dca8897-a978-4293-9495-7fff4b4f6a80" class="bulleted-list"><li style="list-style-type:circle">Username</li></ul><ul id="17d89503-bac6-4704-b7db-d3efe40252d3" class="bulleted-list"><li style="list-style-type:circle">Turn Status</li></ul><ul id="497821cc-af72-4a32-85be-8c9337a2f20e" class="bulleted-list"><li style="list-style-type:circle">Exchanged Currency Amount</li></ul><ul id="618393d6-aeb6-4080-93af-9e01d9aa96dc" class="bulleted-list"><li style="list-style-type:circle">Player Cash Amount</li></ul><ul id="17b708b9-4c99-4d4b-835f-55141954349e" class="bulleted-list"><li style="list-style-type:circle">Game Win Condition</li></ul><ul id="3db02e69-42f4-4aca-a283-bdd59eaed44a" class="bulleted-list"><li style="list-style-type:circle">Show Tutorial Condition</li></ul></li></ul><figure id="2c242cc3-6cce-4e34-8642-ee3801fa1caf" class="image"><a href="Test%20Repor%20dc3a9/Untitled.png"><img style="width:941px" src="Test%20Repor%20dc3a9/Untitled.png"/></a></figure><ul id="d94ca312-2c94-453a-b7b2-c79d7b22065c" class="bulleted-list"><li style="list-style-type:disc">We have highlighted each use case flow in our use case diagram in different colors. The colored diagram can be seen above. We have also listed all the matched test cases with the appropriate use case flows. Each color shows a different use case flow and their matching test cases are listed below.<ul id="830949b6-2d8c-408c-811a-0640388206de" class="bulleted-list"><li style="list-style-type:circle">Red: <ul id="157b346f-b031-42ef-b027-a506b18ce2ff" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul><ul id="94cafc3a-8934-4656-82fc-6e7d891c4e06" class="bulleted-list"><li style="list-style-type:square">Username</li></ul><ul id="97577ebd-f208-4b93-a680-276cfc813d80" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul></li></ul><ul id="d2632763-efc4-475d-bf4f-024dd303b7c9" class="bulleted-list"><li style="list-style-type:circle">Brown: <ul id="185e72b5-78ff-4e3d-bae7-4955c66da300" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul></li></ul><ul id="9ed8ad86-be11-4ae1-87ec-af1687da269f" class="bulleted-list"><li style="list-style-type:circle">Light Blue: <ul id="731e0ca3-4a30-4c42-96b7-7c889960658d" class="bulleted-list"><li style="list-style-type:square">Username</li></ul><ul id="76a26cb4-5de6-4ba5-8a12-0b80456d9ebe" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul></li></ul><ul id="f165ba8b-60ba-422b-b87e-bbe0519b7fef" class="bulleted-list"><li style="list-style-type:circle">Cyan: <ul id="fd769c29-48f9-4bf4-ad01-4dcb08b0f6d1" class="bulleted-list"><li style="list-style-type:square">Show Tutorial Condition</li></ul></li></ul><ul id="cf45c3c8-7951-4da8-934d-c24d991e6099" class="bulleted-list"><li style="list-style-type:circle">Orange: <ul id="85716b6b-84d8-4b65-91ef-c30a3b5ee770" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul></li></ul><ul id="79dd6af0-f6de-49dd-8a1c-74b81339edda" class="bulleted-list"><li style="list-style-type:circle">Dark Blue: <ul id="20b9d678-cfd5-4be0-9c94-9fe4b455f0ef" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul></li></ul><ul id="85e81675-9994-44e5-9194-2677f0c6fb5d" class="bulleted-list"><li style="list-style-type:circle">Yellow<ul id="71faaa93-8a82-40ae-8544-87cdb447f609" class="bulleted-list"><li style="list-style-type:square">Player Cash Amount</li></ul><ul id="93c7c20d-875d-431f-ab74-a018fe8184c9" class="bulleted-list"><li style="list-style-type:square">Dice Roll System</li></ul><ul id="bf65b795-48af-449f-b449-ba560c9c9b46" class="bulleted-list"><li style="list-style-type:square">Turn Change System between Players</li></ul><ul id="92dff349-a421-4e5e-9c2a-079b0880202f" class="bulleted-list"><li style="list-style-type:square">Turn Operations in one Turn</li></ul><ul id="9954a4cb-cd90-4c2e-b5b1-f4704d87a134" class="bulleted-list"><li style="list-style-type:square">In-game HUD Design and Functions</li></ul><ul id="a218bd67-705c-4bea-845b-60088a0be72e" class="bulleted-list"><li style="list-style-type:square">Property Ownage System</li></ul><ul id="e76c156a-63cf-454b-870c-20dba15374e2" class="bulleted-list"><li style="list-style-type:square">Rent Payment System</li></ul></li></ul><ul id="f530189d-8f1d-405d-a0f1-75f0c71d386e" class="bulleted-list"><li style="list-style-type:circle">Green<ul id="973b8665-a8f4-4090-b328-568219714f7e" class="bulleted-list"><li style="list-style-type:square">Game Win Condition</li></ul><ul id="8a908976-8c88-4dc1-a1f8-0830986444da" class="bulleted-list"><li style="list-style-type:square">Endgame Screen Design and Functions</li></ul><ul id="21af7ecc-6ef6-4b50-a817-cc06e15c6656" class="bulleted-list"><li style="list-style-type:square">Endgame Screen Design and Functions</li></ul></li></ul><ul id="763d7d5b-e04f-44a5-a3e5-3b32c37da391" class="bulleted-list"><li style="list-style-type:circle">Black: <ul id="31b521ac-8d37-457a-88ab-b6879fefb4ba" class="bulleted-list"><li style="list-style-type:square">Main Menu Design and Functions</li></ul></li></ul><ul id="091dc3f4-7001-46d7-abdc-ebe1c176fc63" class="bulleted-list"><li style="list-style-type:circle">Purple: <ul id="4625067c-48b5-4673-b81c-2592a75d5222" class="bulleted-list"><li style="list-style-type:square">Setting up the Game Board</li></ul><ul id="33c625e3-29f7-4978-954e-ac9bc56496bc" class="bulleted-list"><li style="list-style-type:square">Turn Change System between Players</li></ul><ul id="1ab14ed5-a6c9-4dc4-b0a5-44c34569b25e" class="bulleted-list"><li style="list-style-type:square">Turn Operations in one Turn</li></ul><ul id="bc91e321-fd72-43fb-93c9-acef6e7252e6" class="bulleted-list"><li style="list-style-type:square">In-game HUD Design and Functions</li></ul><ul id="a2795821-9887-4922-8a6c-0ce80bf0b992" class="bulleted-list"><li style="list-style-type:square">Exchange Station Implementation</li></ul></li></ul><ul id="8028b5d9-6906-4c15-bcdd-ab362e0fd506" class="bulleted-list"><li style="list-style-type:circle">Pink:<ul id="a6315c44-1072-4c29-ae85-38ddf8bc6fef" class="bulleted-list"><li style="list-style-type:square">Turn Status</li></ul><ul id="0141d254-e34b-4a1f-bd0a-2fdcad229f59" class="bulleted-list"><li style="list-style-type:square">Dice Roll System</li></ul><ul id="3badd864-5367-4ee1-95df-bdda270777d2" class="bulleted-list"><li style="list-style-type:square">Dice Results</li></ul><ul id="81c27eb7-50a9-43b2-b319-c847ced540a9" class="bulleted-list"><li style="list-style-type:square">Rent Amount</li></ul><ul id="4fd39d08-632c-4b34-91f3-011fd58c38cd" class="bulleted-list"><li style="list-style-type:square">Remaining Time</li></ul><ul id="163e9b7b-5623-4489-b8cf-e3b6b5604eec" class="bulleted-list"><li style="list-style-type:square">Turn Status</li></ul><ul id="278c8fac-6d55-4cb6-885c-03e78d45cfbe" class="bulleted-list"><li style="list-style-type:square">Exchanged Currency Amount</li></ul><ul id="6bafbed6-98d2-4588-8382-b93e6edb084d" class="bulleted-list"><li style="list-style-type:square">Player Cash Amount</li></ul><ul id="037ffa7b-c2b0-48fa-8d4d-ceed83c8c067" class="bulleted-list"><li style="list-style-type:square">Game Win Condition</li></ul><ul id="d2f25d25-b200-4a60-b5f1-0d962a157b51" class="bulleted-list"><li style="list-style-type:square">Dice Roll System</li></ul><ul id="89c2f089-4451-4def-82f4-427b9140e4fa" class="bulleted-list"><li style="list-style-type:square">Movement of Player Pieces</li></ul><ul id="99b551ee-9961-4d3c-8686-58246f5299d8" class="bulleted-list"><li style="list-style-type:square">Class Scripts Coding</li></ul><ul id="efb895a0-bb6b-404e-84fc-26b63d32639f" class="bulleted-list"><li style="list-style-type:square">Turn Change System between Players</li></ul><ul id="c3c1899c-b1a1-4a47-a9af-a3d369345859" class="bulleted-list"><li style="list-style-type:square">Turn Operations in one Turn</li></ul><ul id="89dd40da-12c9-42c6-b0c1-e1c6297a288f" class="bulleted-list"><li style="list-style-type:square">Endgame Screen Design and Functions</li></ul><ul id="00ced8ae-b5b9-4367-8752-da79e54cd8ed" class="bulleted-list"><li style="list-style-type:square">In-game HUD Design and Functions</li></ul><ul id="a51380b0-c20c-41eb-b8d8-af4ab0d04377" class="bulleted-list"><li style="list-style-type:square">Exchange Station Implementation</li></ul><ul id="5d3a6d86-a861-4007-a4b5-37ccf4af95cc" class="bulleted-list"><li style="list-style-type:square">Rent Payment System</li></ul></li></ul></li></ul><ul id="7ada6c96-0aec-43b0-acd3-d122a01f35b6" class="bulleted-list"><li style="list-style-type:disc">There are a total of 11 different colors meaning a total of 11 use case flows. Our test cases cover a total of 11 use case flows. By finding the ratio of the covered paths to all paths, our test cases coverage on the project equates to a total of (100 * 11) / 11 = %100.</li></ul><ul id="eeedef64-f0bb-41ff-a0de-1a7f66ae5ab1" class="bulleted-list"><li style="list-style-type:disc">In addition to our black-box, white-box and unit testing, we had additional test to check difference performance aspects of our game. These results are thoroughly documented in “4.3 Additional Test Results”. </li></ul><h3 id="ffdc36f4-9981-4461-a47a-bd9c7de4df89" class="">4.2 Test Results Log</h3><ul id="1c317178-92db-40d7-aaf5-bb229f66d407" class="bulleted-list"><li style="list-style-type:disc">We extensively used unit, white-box and block-box testing in our project. All of these tests, their descriptions, expected outcomes, results etc., are extensively logged through in parts <strong>2.3</strong> and <strong>2.4</strong>.</li></ul><ul id="819c5d3a-3b8c-4f10-914e-97f9e58cce36" class="bulleted-list"><li style="list-style-type:disc">All of our black-box testing logs can be seen in <strong>2.3</strong>.</li></ul><ul id="f0c5ece3-6b41-4809-afc5-8bcea247aac5" class="bulleted-list"><li style="list-style-type:disc">All of our white-box/unit testing logs can be seen in <strong>2.4</strong>.</li></ul><h3 id="8a9ecbc1-dd1a-4ef2-ab2e-3f41e2b19c5a" class="">4.3 Additional Test Results</h3><h2 id="9665fa56-9e10-401e-8356-0c5fd96650c2" class="">Performance Test Results</h2><p id="4d8de258-f123-482c-b7ca-067b07d9cf5d" class=""><strong>4.3.1. Unity Profiler:</strong></p><ul id="804ba10c-7d4e-4111-b3c6-0aef6b0be102" class="bulleted-list"><li style="list-style-type:disc">Some pictures and explanations with the use of the Unity Profiler test tool are shown and explained.</li></ul><p id="25ac4631-e747-4b1a-b475-349d708c7b1d" class=""><strong>Script Optimization:</strong></p><figure id="e64b6e5e-bea0-4d88-8ef2-5d05d4fee858" class="image"><a href="Test%20Repor%20dc3a9/Untitled%201.png"><img style="width:1333px" src="Test%20Repor%20dc3a9/Untitled%201.png"/></a></figure><ul id="fbbf668e-4526-4d2d-a070-d98619b794e7" class="bulleted-list"><li style="list-style-type:disc">There were some issues with our script, as shown in the above picture. We would get instant “FPS drop” when called the TurnHandler script was called. This can be seen in the picture as a blue spike.We have seen and analyzed this problem to then fix it. The image below can be seen as the FPS has dropped from 250 to 40.</li></ul><figure id="2d84a022-b61a-4c0d-8ec5-70f4fe0d84ef" class="image"><a href="Test%20Repor%20dc3a9/Untitled%202.png"><img style="width:1346px" src="Test%20Repor%20dc3a9/Untitled%202.png"/></a></figure><p id="acf8e37b-4400-4530-b495-fe90efeac3e4" class="">
+</p><p id="71f2ce28-c315-468d-855c-c6788ffeb51d" class=""><strong>Memory Usage:</strong></p><figure id="515688e0-8853-415c-8b9b-be701368f6c4" class="image"><a href="Test%20Repor%20dc3a9/Untitled%203.png"><img style="width:1350px" src="Test%20Repor%20dc3a9/Untitled%203.png"/></a></figure><ul id="c767b875-f1d6-4b90-9b31-8d269f8c39ea" class="bulleted-list"><li style="list-style-type:disc">We used the Memory tab of the profiler to detect if there were any memory leaks in our game. The game had no real issues on the memory leak side of things so our tests provided excellent results.</li></ul><p id="35efc611-26a7-4bc1-9afb-3e286c5b7092" class="">
+</p><p id="67145586-f343-4053-aa42-52de7a66cbd7" class=""><strong>Physics Engine Optimization: </strong></p><figure id="e213417c-1568-4350-81cb-f5dc4682f458" class="image"><a href="Test%20Repor%20dc3a9/Untitled%204.png"><img style="width:1344px" src="Test%20Repor%20dc3a9/Untitled%204.png"/></a></figure><ul id="71fe1dd7-76e1-4f78-bea4-dc54bf3b4ea1" class="bulleted-list"><li style="list-style-type:disc">We observed some spikes on our Roll Dice Scripts and the system. As you can see on the profiler image above, physics (orange) has caused a big spike while the dice was rolling down on board. We have analyzed and optimized it this issue to not cause any spikes while the dice is being rolled. With the optimized approach, the regular motion of the profiler continued to give results with no spikes.</li></ul><p id="a2c6f6b5-bfcc-4eaa-9f3f-872256e780c8" class="">
+</p><p id="5c7fa515-5a2d-473c-9be7-006b847e2a6f" class=""><strong>GPU and CPU Usage:</strong></p><ul id="c096d9ea-0d35-401e-9e04-5d1f446f6a80" class="bulleted-list"><li style="list-style-type:disc">We have tested our game’s overall performance by monitoring the CPU and GPU usage at all times. As you can see on Script Optimization and Physics Engine Optimization, CPU usage gives us a lot of information about the performance of the game. GPU usage, combined with frame debugger gave us definite solutions for problems caused by visual rendering of the objects.</li></ul><p id="85a94657-6cee-4dfc-98ff-4221840eb589" class="">
+</p><p id="300e3a3c-8b04-4be4-b3c6-5dcb6133085b" class=""><strong>4.3.2. Frame Debugger:</strong></p><ul id="76ffa2c7-6431-4dbc-9d4d-31190d0b47d2" class="bulleted-list"><li style="list-style-type:disc">Frame Debugger was another tool that we have used in Unity to check the render order and performance affections of every single visual batch the game has. Unity has a concept called “Draw Call”, every single visual in game is “drawn” on the screen. Some objects cause higher “Draw Calls” because they are more complex. </li></ul><ul id="2561c508-bfc7-4b68-b644-41b0422268b3" class="bulleted-list"><li style="list-style-type:disc">We optimized our UI and HUD elements to reduce our draw call for higher performance in our game. As you can see below, “UGUI.Rendering.RenderOverlays” screen has 26 “Draw Calls”, with optimization, we have reduced this number to 8. This didn’t affect our performance that much since 26 is still a relatively low number of “Draw Calls” for an actual game, but we tried to get the best performance as we could. </li></ul><figure id="aa103964-f2f6-42ca-90c0-bca3ef6c10da" class="image"><a href="Test%20Repor%20dc3a9/Untitled%205.png"><img style="width:1342px" src="Test%20Repor%20dc3a9/Untitled%205.png"/></a></figure></div></article></body></html>

@@ -1,0 +1,658 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Requirement Specification</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6cb882f9-631f-41fe-b307-9f2935f67853" class="page sans"><header><h1 class="page-title">Requirement Specification</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Created</th><td><time>@November 10, 2021 2:34 PM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M7.01356 14.0001C8.8042 14.0001 10.5958 13.3107 11.9575 11.9324C14.681 9.21201 14.6808 4.7603 11.9571 2.04013C9.23336 -0.680043 4.77573 -0.680043 2.05199 2.04013C0.727519 3.36277 0 5.13301 0 6.99553C0 8.8764 0.727811 10.6285 2.05199 11.9509C3.43207 13.3106 5.22243 14.0001 7.01356 14.0001ZM3.72947 7.00914V8.461V8.65543H3.92382H5.34563H8.2794H8.4738V8.461V5.52541V3.37947V3.18502H8.2794H6.82747H6.63307V3.37947V6.81467H3.92382H3.72947V7.00914ZM1.83985 6.99553C1.83985 5.61698 2.38099 4.32597 3.36061 3.3477C5.36746 1.34337 8.64803 1.34062 10.6585 3.33944C10.6613 3.34219 10.6639 3.34494 10.6668 3.3477C12.676 5.3546 12.6763 8.63642 10.6668 10.6434C8.65705 12.6504 5.37031 12.6504 3.36061 10.6434C2.38099 9.66506 1.83985 8.37408 1.83985 6.99553Z"></path></svg></span>Last Edited Time</th><td><time>@December 9, 2021 8:12 PM</time></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Type</th><td><span class="selected-value select-value-color-blue">Technical Spec</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><td><span class="selected-value select-value-color-gray">Archived</span></td></tr><tr class="property-row property-row-created_by"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Created By</th><td></td></tr><tr class="property-row property-row-last_edited_by"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedBy"><path d="M13.125,10.0354 C12.5536,9.48588 10.801,8.53125 9.625,7.875 L9.625,7.04112 C9.849,6.71912 10.045,6.37 10.1911,5.98588 C10.5849,5.7435 10.9375,5.28412 10.9375,4.8125 C10.9375,4.35488 10.9323,3.94275 10.4668,3.605 C10.3049,1.5575 9.436,0 7,0 C4.564,0 3.69513,1.5575 3.53325,3.605 C3.06775,3.94275 3.0625,4.35488 3.0625,4.8125 C3.0625,5.28412 3.41513,5.7435 3.80888,5.98588 C3.955,6.37 4.151,6.71912 4.375,7.04112 L4.375,7.875 C3.199,8.53125 1.44638,9.48588 0.875,10.0354 C0.1645,10.7188 0,11.8125 0,14 L14,14 C14,11.8125 13.8364,10.7188 13.125,10.0354 Z"></path></svg></span>Last Edited By</th><td></td></tr><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesPerson"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Stakeholders</th><td></td></tr></tbody></table></header><div class="page-body"><nav id="5ae07070-3a0d-4d0e-b08a-05254305272a" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ad0067ad-0e84-44c9-bbb2-59f078d20f00">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5dd3d765-a062-44eb-b2c8-1fb3df03636d">Overview of Document</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8051ebf6-b229-45bf-8c8a-8da791c48081">System Requirements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7c46b9d9-ce65-4350-929f-559dc63e3eb1">Functional Requirements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#eae03e32-23a0-4cc0-a2f2-9990aab67114">Non-functional Requirements</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f93a17d2-9a47-4e1f-bf27-44aaff6ac043">Usability</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#de549173-78ab-44f7-8f58-cccbdac6ffcf">Reliability</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c2a44208-5589-4139-ba35-f72f2806ae99">Performance</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a6bbd577-de42-4f75-b1e9-966a4e7eb61f">Supportability</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#e2a6c56d-ce70-4aee-b1be-6acd8c5a9883">Security</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a3b4fa8c-6ae8-480c-b058-ce00cb1c4ba3">User Documentation</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ad60b755-b95b-43c1-9451-b8b2d142bfe6">Interface</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#efc06968-0519-44b8-a316-45faa1207f3b">Use Cases</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c1801d1c-b6b2-4075-b4c4-72a9423ef8c0">User Types</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0a2cb9ab-6b64-4ca8-8396-d5fb7fcc0647">User Scenarios</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e9e0037-cb71-47f2-94fa-590f66859050">Use Case Diagram</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#05d6d4d6-b9e7-40bf-a93d-1dcf7df8375d">Use Cases</a></div></nav><h1 id="ad0067ad-0e84-44c9-bbb2-59f078d20f00" class="">Introduction</h1><p id="52b47b71-b523-42ff-94b9-c12fc7db5713" class="">This is the Requirements Specification document for a new web-based game which is called New Monopoly. This new game design will comprehensively upgrade the current Monopoly game and enable its users to play on a web browser. This document describes the system requirements with functional and non-functional requirements in addition to the use case model of the game. </p><h2 id="5dd3d765-a062-44eb-b2c8-1fb3df03636d" class="">Overview of Document</h2><p id="1e4918e3-f40d-40c5-b0c0-da0b028c2aa3" class="">The overview of the document gives detailed specifications about our New Monopoly game. The organization of the document is done as below:</p><ol type="1" id="8f16133e-0de4-4e73-ac9d-1bd3edc0a3ab" class="numbered-list" start="1"><li><strong>System Requirements:</strong> <ul id="c362a2ac-c5c0-49dd-8ea1-f7bbe5f96027" class="bulleted-list"><li style="list-style-type:disc"><strong>Functional Requirements: </strong>In this section, functional requirements are listed. Each functional requirement shows the required behavior by New Monopoly.</li></ul><ul id="c45892a5-a963-41bd-9727-b7a6e5e6fb29" class="bulleted-list"><li style="list-style-type:disc"><strong>Non-Functional Requirements: </strong>In this section, non-functional requirements are organized and listed according to their categories. Each non-functional requirement shows a constraint or a requirement on the general characteristics of New Monopoly.</li></ul></li></ol><ol type="1" id="38383078-5d29-4cb6-87bf-bc1f12fe8212" class="numbered-list" start="2"><li><strong>Use Case Model: </strong>All user types and the scenarios for given user types are shown in lists. Also, all requirements of the system are shown with the help of use cases. Every use case shows how the relationship between the system and the user. Use cases are given with both explanations and with a diagram. The diagram shows all relations between use cases and user types.<ul id="e00a167c-3a37-45bc-849f-2c416d7eb1e2" class="bulleted-list"><li style="list-style-type:disc">User Types: All user types are shown as a list.</li></ul><ul id="89f7e779-d480-495d-805e-32180ebaaf72" class="bulleted-list"><li style="list-style-type:disc">User Scenarios: Scenarios for each given user type are listed.</li></ul><ul id="d493442f-8bd9-4460-bf05-13e985f2e6db" class="bulleted-list"><li style="list-style-type:disc">Use-Case Diagram: The use case diagram containing all use cases is shown.</li></ul><ul id="01042eb4-2731-4b76-a696-a435e0295e34" class="bulleted-list"><li style="list-style-type:disc">Use Cases: All use cases are listed with their purpose, overview, actor(s), pre-condition(s), post-conditions(s), the alternative flow of events.</li></ul></li></ol><h1 id="8051ebf6-b229-45bf-8c8a-8da791c48081" class="">System Requirements</h1><p id="e00bdd6b-dc02-415d-b02d-993760937be3" class="">List of functional and non-functional requirements in natural language form.</p><h2 id="7c46b9d9-ce65-4350-929f-559dc63e3eb1" class="">Functional Requirements</h2><ul id="d3a89bf3-cc50-483b-ac58-aa450e39b44d" class="bulleted-list"><li style="list-style-type:disc">The game shall include all functional requirements of a classic Monopoly board game.</li></ul><ul id="8037c990-31b7-4402-a47d-6a84c5bd7ede" class="bulleted-list"><li style="list-style-type:disc">The game bank shall have multiple currencies.</li></ul><ul id="4d478fda-e695-47e6-9af5-9559a1ea4610" class="bulleted-list"><li style="list-style-type:disc">When a player decides not to buy a property, the property shall go on public auction by the system. </li></ul><ul id="7d6e72ca-d760-411b-be8c-445c537bbc8a" class="bulleted-list"><li style="list-style-type:disc">The game world shall run in 3D.</li></ul><ul id="da5dcbf8-a0f6-4b45-8660-f073a55c8f4a" class="bulleted-list"><li style="list-style-type:disc">The game shall include a new game mode, where one player starts as the monopoly and the others as contenders.</li></ul><ul id="83be7893-8c83-4c93-9cc4-4939d431ceef" class="bulleted-list"><li style="list-style-type:disc">The game economy shall be dynamic.<ul id="f6d08615-3fea-4c39-9ccf-44394d5ae49f" class="bulleted-list"><li style="list-style-type:circle">Property values shall be affected by inflation.</li></ul><ul id="2ccd7cbd-3e36-40c9-82f7-0361fa6cb222" class="bulleted-list"><li style="list-style-type:circle">Currency exchange rates shall change based on the current economy.</li></ul><ul id="0a61ec25-77f1-4f02-94e2-7cdec0046643" class="bulleted-list"><li style="list-style-type:circle">The game should include future contracts.</li></ul></li></ul><ul id="34dfe13c-1ee8-44f7-b3a7-3807b8468ca6" class="bulleted-list"><li style="list-style-type:disc">The game shall allow the configuration of basic monopoly features.<ul id="0fdc9dea-0f99-4607-88e0-5e8193444a5a" class="bulleted-list"><li style="list-style-type:circle">The game shall allow players to enable a random sequence of spots as well as a periodic, random change of the properties pricing, rents, interests, and taxes rates (in both spots and cards).</li></ul><ul id="f057fae6-f07f-4e2f-9d7e-dc60f4ef1f33" class="bulleted-list"><li style="list-style-type:circle">The game shall allow a loyalty program to enable the use of virtual currency with random rules based on existing international alliances’ programs</li></ul><ul id="9dec76e7-cead-43e7-ade8-12088cf65b52" class="bulleted-list"><li style="list-style-type:circle">The game shall allow new players to join the game as entrepreneurs (weaker restrictions on the number of players).</li></ul><ul id="7a9e0344-b478-47b3-a7b6-f69169b42279" class="bulleted-list"><li style="list-style-type:circle">The game shall allow complexity setting in three levels (e.g., easy, medium, hard) based on rules and different configurations from exploring variabilities on the previous three bullets.</li></ul></li></ul><h2 id="eae03e32-23a0-4cc0-a2f2-9990aab67114" class="">Non-functional Requirements</h2><h3 id="f93a17d2-9a47-4e1f-bf27-44aaff6ac043" class="">Usability</h3><ul id="6bf69ca5-fb71-462b-aa72-09c427948d19" class="bulleted-list"><li style="list-style-type:disc">Users should be able to adapt to the system easily.</li></ul><ul id="31ded84a-78d5-49c0-91fd-a4b1d56c725c" class="bulleted-list"><li style="list-style-type:disc">If a user knows how to play a classic Monopoly game, this system should present a familiar experience in the terms of pawns, cards, random events.</li></ul><h3 id="de549173-78ab-44f7-8f58-cccbdac6ffcf" class="">Reliability</h3><ul id="432c7dd2-9c8a-45cc-a37d-8707ab3e9ed3" class="bulleted-list"><li style="list-style-type:disc">The system must be operational for the duration of the whole game.</li></ul><ul id="1a5b8a99-fb44-4f81-860b-254d558eef89" class="bulleted-list"><li style="list-style-type:disc">If there is an exception that results in the system shutting down, the recovery shouldn&#x27;t take more than one minute. </li></ul><h3 id="c2a44208-5589-4139-ba35-f72f2806ae99" class="">Performance</h3><ul id="d8bd50a3-9e98-493f-99ab-66df953b50db" class="bulleted-list"><li style="list-style-type:disc">The system should use a reasonable amount of internet.</li></ul><ul id="cd9b00af-cdc1-4ebd-addb-5e9dc4d112f4" class="bulleted-list"><li style="list-style-type:disc">The system&#x27;s graphics need to be optimized to stabilize FPS.</li></ul><ul id="35aa749c-16a1-4fa0-9f8b-8105ac9f485e" class="bulleted-list"><li style="list-style-type:disc">The game logic of the system should be flawlessly executable. </li></ul><h3 id="a6bbd577-de42-4f75-b1e9-966a4e7eb61f" class="">Supportability</h3><ul id="a2ddef3e-b8a9-47ea-8a5b-954a4917073e" class="bulleted-list"><li style="list-style-type:disc">The system should be able to accommodate new updates without major reengineering.</li></ul><ul id="5a5d93c1-0cfa-4e1b-9c1b-95d78e6e8fb5" class="bulleted-list"><li style="list-style-type:disc">The system&#x27;s website shall be viewable from modern web browsers, such as Google Chrome, Apple Safari, and Mozilla Firefox.</li></ul><h3 id="e2a6c56d-ce70-4aee-b1be-6acd8c5a9883" class="">Security</h3><ul id="945df506-c412-469b-9584-0a4f95a7d99a" class="bulleted-list"><li style="list-style-type:disc">The system should enable its users to create and join rooms without requiring any sensible information.</li></ul><h3 id="a3b4fa8c-6ae8-480c-b058-ce00cb1c4ba3" class="">User Documentation</h3><ul id="a6c4372b-01e7-4181-a425-6b5b2787799c" class="bulleted-list"><li style="list-style-type:disc">There should be informative material that describes the newly added game mechanics.</li></ul><h3 id="ad60b755-b95b-43c1-9451-b8b2d142bfe6" class="">Interface</h3><p id="c43325b4-42ee-472c-8df7-d22fe4e5ce0b" class="">The system shall be interfaced with:</p><ul id="1fbb4593-f298-4f89-8a33-18413568c355" class="bulleted-list"><li style="list-style-type:disc">Lobby creation scene</li></ul><ul id="08599fba-0971-4250-8229-863f44b5cea7" class="bulleted-list"><li style="list-style-type:disc">Lobby joining scene</li></ul><ul id="5159c617-707c-47f8-a66b-294703386615" class="bulleted-list"><li style="list-style-type:disc">Tutorial scene</li></ul><ul id="68a1b8c0-bb25-4568-bd26-857aa2171327" class="bulleted-list"><li style="list-style-type:disc">The main game scene</li></ul><ul id="fe4b7e4f-98ec-4af9-9fff-d6da2065e24a" class="bulleted-list"><li style="list-style-type:disc">End of the game scene</li></ul><h1 id="efc06968-0519-44b8-a316-45faa1207f3b" class="">Use Cases</h1><h2 id="c1801d1c-b6b2-4075-b4c4-72a9423ef8c0" class="">User Types</h2><p id="11c943d5-8515-4558-abd2-a1c570fa5f56" class="">Specify the list of user-profiles of the software.</p><ul id="356acbed-a54f-41d6-a6bf-d64045a2f605" class="bulleted-list"><li style="list-style-type:disc">Player<ul id="88b7fc88-2c74-45e5-9001-08909e3f52a7" class="bulleted-list"><li style="list-style-type:circle">Monopoly</li></ul><ul id="2cabe969-0b97-49ff-86ed-e65a18321369" class="bulleted-list"><li style="list-style-type:circle">Contenders</li></ul></li></ul><ul id="40e09675-7911-49be-af19-f07547efb652" class="bulleted-list"><li style="list-style-type:disc">Lobby creator</li></ul><ul id="1a1f3dd9-c47a-41e3-a9be-87b4128e1083" class="bulleted-list"><li style="list-style-type:disc">Lobby joiners</li></ul><h2 id="0a2cb9ab-6b64-4ca8-8396-d5fb7fcc0647" class="">User Scenarios</h2><p id="8e089a4c-862a-49c9-a25c-d958b3c39ddf" class="">Create personas and write narrative scenarios for the list of actions.</p><ul id="2cea8aad-e621-4ff8-96fc-911e2a3049a6" class="bulleted-list"><li style="list-style-type:disc">Player<ul id="024fbd8a-046f-4951-94c3-f797b069f1d4" class="bulleted-list"><li style="list-style-type:circle">As a player, I want to see my holdings even when it&#x27;s not my turn so that I can work my strategy.</li></ul><ul id="b2bb0448-c7f3-47f0-9514-5382b6f40648" class="bulleted-list"><li style="list-style-type:circle">As a player, I want to see which holdings are already sold and to whom.</li></ul><ul id="da077935-ad6e-4544-ac91-4f1977adad1c" class="bulleted-list"><li style="list-style-type:circle">Monopoly<ul id="f46ffa66-27a9-46fd-9eb4-e3f25b872b42" class="bulleted-list"><li style="list-style-type:square">As a monopoly, I want to bankrupt all the other contenders and hold my monopoly.</li></ul></li></ul><ul id="34d9f79f-426c-467b-a94d-693733c439ec" class="bulleted-list"><li style="list-style-type:circle">Contenders<ul id="8587949a-25c6-4175-8bfe-b20564e572c5" class="bulleted-list"><li style="list-style-type:square">As a contender, I want to own a reasonable amount of the market.</li></ul><ul id="935ec8db-570b-4e8d-bd2f-034d7ddf1ae9" class="bulleted-list"><li style="list-style-type:square">As a contender, I want to bankrupt the monopoly or all the other contenders.</li></ul></li></ul></li></ul><ul id="70534ce2-e1e8-45b8-b8ec-749323c81088" class="bulleted-list"><li style="list-style-type:disc">Lobby Creator<ul id="9b915ad3-c9a0-405d-a637-876c808e90c2" class="bulleted-list"><li style="list-style-type:circle">As a lobby creator, I want to share my lobby ID so that my friends.</li></ul><ul id="7a83743f-4c89-41d9-a7f0-ebbeaa9f5d3f" class="bulleted-list"><li style="list-style-type:circle">As a lobby creator, I want to see who joined my lobby.</li></ul><ul id="2a37b4fe-52f1-4e98-975c-34693939f408" class="bulleted-list"><li style="list-style-type:circle">As a lobby creator, I want to start the game.</li></ul></li></ul><ul id="a82e1924-99cd-439d-b884-377ac1662db2" class="bulleted-list"><li style="list-style-type:disc">Lobby Joiners<ul id="a5d6d6f4-c4a7-4506-9abe-bf78f2fda5f8" class="bulleted-list"><li style="list-style-type:circle">As a lobby joiner, I want to join a game I know the ID of.</li></ul><ul id="466d19fd-dcda-42ee-b52a-e19799d57481" class="bulleted-list"><li style="list-style-type:circle">As a lobby joiner, I want to see who else is in the lobby.</li></ul></li></ul><h2 id="1e9e0037-cb71-47f2-94fa-590f66859050" class="">Use Case Diagram</h2><p id="312a3835-ce32-4395-9a39-9107d058ad1b" class="">Specify one diagram for the whole system and additional diagrams of each software functionality.</p><figure id="360b6f6f-6883-481e-b655-64a8b03f110a" class="image"><a href="Requiremen%206cb88/DAWLAND2.jpg"><img style="width:607px" src="Requiremen%206cb88/DAWLAND2.jpg"/></a></figure><h2 id="05d6d4d6-b9e7-40bf-a93d-1dcf7df8375d" class="">Use Cases</h2><p id="715495e9-921a-402f-918b-a89e640ab4c0" class="">Specify a use case for each feature/requirement in your project plan also containing alternative flows.</p><ol type="1" id="eca355ce-5bae-4fe9-ac2a-4cd9ba0d24f2" class="numbered-list" start="1"><li><strong>Use Case Name: </strong>Join Lobby<ul id="e362f78b-2559-4040-b5a0-4874b6e79ce6" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose: </strong>To play games with others, the user must join a lobby </li></ul><ul id="dc6db4fb-bc20-40d0-bf81-df7feabbd8fc" class="bulleted-list"><li style="list-style-type:disc"><strong>Overview:</strong><ol type="1" id="1809cbd2-b229-4856-bfc0-056020d01601" class="numbered-list" start="1"><li>A player starts the application.</li></ol><ol type="1" id="76a9d988-2215-413b-ad00-a4f5545e9263" class="numbered-list" start="2"><li>The system asks for the lobby name to join.</li></ol><ol type="1" id="a29b34a8-9389-425e-ab86-9f3072f9848f" class="numbered-list" start="3"><li>The user enters the lobby name to join.</li></ol><ol type="1" id="d2d811af-d2ec-401a-8e34-4966173d5638" class="numbered-list" start="4"><li>The system checks if the lobby exists and if it does if it is full.</li></ol><ol type="1" id="3fd01300-09e6-410d-8ab5-4e3559b98ffc" class="numbered-list" start="5"><li>The system includes the person in the game.</li></ol><ol type="1" id="f8b9497c-5d88-4665-adc1-32310be95a34" class="numbered-list" start="6"><li>The system asks for a user name.</li></ol><ol type="1" id="cdcc2a4e-eaaf-4994-8128-7becdf825cfd" class="numbered-list" start="7"><li>The player enters the user name.</li></ol><ol type="1" id="7c77192e-8a51-4de8-ba43-2f928daa44c1" class="numbered-list" start="8"><li>The system checks if the user name is taken by any other player in the lobby.</li></ol></li></ul><ul id="33da814d-8a26-4f7f-86d5-f74ab1009f39" class="bulleted-list"><li style="list-style-type:disc"><strong>Actor(s):</strong><ul id="e0853ed2-92e5-4bd4-98c8-60ee11569eae" class="bulleted-list"><li style="list-style-type:circle">Lobby Joiner</li></ul></li></ul><ul id="ebed87fa-612f-44cf-8f0f-8d5200c5f6ea" class="bulleted-list"><li style="list-style-type:disc"><strong>Pre Condition(s):</strong><ul id="7c2db0ab-7c0a-47ae-913a-1a0a22956618" class="bulleted-list"><li style="list-style-type:circle">The player that is joining the lobby must have an internet connection.</li></ul><ul id="72f34b91-7431-412b-8af0-752819465da3" class="bulleted-list"><li style="list-style-type:circle">The player must know the lobby name to join.</li></ul><ul id="51963807-2082-4f9d-8628-dab5c7fc1ef9" class="bulleted-list"><li style="list-style-type:circle">The lobby must exist so the player can enter.</li></ul></li></ul><ul id="5c87e117-edb2-43b0-b736-70862aaed237" class="bulleted-list"><li style="list-style-type:disc"><strong>Post Condition(s):</strong><ul id="fc7c0fe1-e6e8-437e-91a8-e9c3b8c65db0" class="bulleted-list"><li style="list-style-type:circle">The player is included in the game.</li></ul></li></ul><ul id="6841a06c-d0d3-408a-b816-12151d25085d" class="bulleted-list"><li style="list-style-type:disc"><strong>The Alternative Flow of Events:</strong><ul id="39c2dd25-8cde-44be-8162-7d65080e7081" class="bulleted-list"><li style="list-style-type:circle">Step 4: If the lobby name doesn&#x27;t exist or when it does if it is full, the use case goes back to step 2.</li></ul><ul id="3b6c4acf-fa0f-43af-b52e-b2e80ccb5f46" class="bulleted-list"><li style="list-style-type:circle">Step 8: If the user name is already taken, the use case goes back to 6.</li></ul></li></ul></li></ol><ol type="1" id="44236328-95af-4532-944d-c477ec89442b" class="numbered-list" start="2"><li><strong>Use Case Name:</strong> Create Lobby<ul id="c3591d80-dcf5-4b5d-9e48-947f8bac6d25" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose: </strong>For a game to be played, a user must create a lobby to play the game in.</li></ul><ul id="6d1a6db2-2893-4bf4-aa6d-e577a811147d" class="bulleted-list"><li style="list-style-type:disc"><strong>Overview:</strong><ol type="1" id="79c6287b-fefd-43f5-8d3c-5d1b55e29958" class="numbered-list" start="1"><li>A player starts the application.</li></ol><ol type="1" id="1cec6803-57b0-4a47-98cb-54d9eedcc932" class="numbered-list" start="2"><li>The system asks for a lobby and user name. </li></ol><ol type="1" id="2a1a33f5-c61a-48f5-87bc-8b25a532e3fb" class="numbered-list" start="3"><li>The user enters the username.</li></ol><ol type="1" id="884eaa2d-d590-409e-9bfa-733acd87aa12" class="numbered-list" start="4"><li>The system verifies the lobby name against all other lobbies.</li></ol><ol type="1" id="b2b502f9-8572-4952-86bb-5509cced6ce6" class="numbered-list" start="5"><li>The system starts a game session and enters the lobby creator into the game.</li></ol></li></ul><ul id="51d954ab-af81-450e-8cb7-9ceb8d283f1b" class="bulleted-list"><li style="list-style-type:disc"><strong>Actor(s):</strong><ul id="1f70810a-b1ed-49d6-ac6a-8f994187ce9a" class="bulleted-list"><li style="list-style-type:circle">Lobby Creator</li></ul></li></ul><ul id="c060ef01-d2b2-4567-9f35-74a2994a6f17" class="bulleted-list"><li style="list-style-type:disc"><strong>Pre Condition(s):</strong><ul id="d8d20031-760b-41d9-afd3-1da4e7e16f50" class="bulleted-list"><li style="list-style-type:circle">The lobby creator must have an internet connection.</li></ul></li></ul><ul id="d3540cc3-bc2f-4d6d-adf2-e10d3ebeb3ff" class="bulleted-list"><li style="list-style-type:disc"><strong>Post Condition(s):</strong><ul id="14c58447-0c87-48a6-8d24-cffc625fca99" class="bulleted-list"><li style="list-style-type:circle">A game session has begun and other players can join to play the game.</li></ul></li></ul><ul id="57768712-50ec-431e-afaf-224157a0b8da" class="bulleted-list"><li style="list-style-type:disc"><strong>The Alternative Flow of Events:</strong><ul id="f01d4179-546a-4f0c-8780-da0f6014b924" class="bulleted-list"><li style="list-style-type:circle">Step 4: If the lobby name is already taken, the use case goes back to step 2.</li></ul></li></ul></li></ol><ol type="1" id="ef83c6a1-e46f-4545-984b-86f219a1c2c0" class="numbered-list" start="3"><li><strong>Use Case Name: </strong>Tutorial<ul id="40cff920-b081-45cd-b65f-2891fb024cfb" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose: </strong>Newcomers should be able to understand the concept that presented in the game.<strong>  </strong>                                                                                                               </li></ul><ul id="8f13e5a7-49f2-469f-b012-c9562e6375df" class="bulleted-list"><li style="list-style-type:disc"><strong>Overview:</strong><ol type="1" id="0f531732-c301-409a-accd-163734c15781" class="numbered-list" start="1"><li>The user starts the system.</li></ol><ol type="1" id="af5db48d-d65b-44cd-a98b-88625440cdc3" class="numbered-list" start="2"><li>The user joins a lobby.</li></ol><ol type="1" id="19a13caf-738c-4939-bc1a-1359ea5fef8c" class="numbered-list" start="3"><li>The system will ask if the tutorial should be shown.</li></ol><ol type="1" id="b774b4be-fd14-4785-8166-ce54daf631d3" class="numbered-list" start="4"><li>If the user accepts, a tutorial will begin.</li></ol></li></ul><ul id="bdfac8e2-1516-4c5e-9cfe-86314bc9cb62" class="bulleted-list"><li style="list-style-type:disc"><strong>Actor(s):</strong><ul id="9ac08e95-a454-44cc-81e1-335807061306" class="bulleted-list"><li style="list-style-type:circle">Players</li></ul></li></ul><ul id="f087c0eb-b0ab-4eda-b009-8a5d74c052fe" class="bulleted-list"><li style="list-style-type:disc"><strong>Pre Condition(s):</strong><ul id="5fb6714d-8cc1-4886-8887-17474f9cc22a" class="bulleted-list"><li style="list-style-type:circle">A lobby must be created.</li></ul><ul id="3cfc2e74-538d-479f-8354-5cb91a190f51" class="bulleted-list"><li style="list-style-type:circle">The player should know the lobby name to join the lobby.</li></ul><ul id="d5693338-7c11-4892-b39d-b76034d5ea30" class="bulleted-list"><li style="list-style-type:circle">The user must have entered their user name and fully joined the game. </li></ul></li></ul><ul id="d7dd3593-4473-4124-86a1-d4707ea6c9d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Post Condition(s):</strong><ul id="95ac79bd-ad69-4ec2-8fcd-d506976adacd" class="bulleted-list"><li style="list-style-type:circle">The user should understand the basics of the game.</li></ul></li></ul><ul id="0c8ce8b1-53d9-4b52-827f-dc8f7d36936d" class="bulleted-list"><li style="list-style-type:disc"><strong>The Alternative Flow of Events:</strong><ul id="b49af668-6292-4d2f-ac20-3a63a00bc86f" class="bulleted-list"><li style="list-style-type:circle">Step 3: The user may not want to see the tutorial. If so, the business logic continues.</li></ul></li></ul></li></ol><ol type="1" id="f4a1e027-601c-4bb0-865b-40752e9db070" class="numbered-list" start="4"><li><strong>Use Case Name: </strong>Start a New Game<ul id="0727c337-a428-4b9c-ac23-47288565deca" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose: </strong>To enjoy the experience, the system should start the game.</li></ul><ul id="46ca73c5-c24f-4de9-bc29-c8cdf51de6ef" class="bulleted-list"><li style="list-style-type:disc"><strong>Overview:</strong><ol type="1" id="e01ad781-fdf2-476a-a391-6c65c636d282" class="numbered-list" start="1"><li>The lobby creator presses start.</li></ol></li></ul><ul id="5cc63207-1c46-4ef7-b36e-7c96b56ed072" class="bulleted-list"><li style="list-style-type:disc"><strong>Actor(s):</strong><ul id="6cbba9e9-9faa-4616-b924-f16c32979ef1" class="bulleted-list"><li style="list-style-type:circle">Lobby Creator</li></ul></li></ul><ul id="42cb8d6c-e747-4624-9865-b63f42559abb" class="bulleted-list"><li style="list-style-type:disc"><strong>Pre Condition(s):</strong><ul id="57392437-31e0-4ab3-b89d-eec1c5f7c66e" class="bulleted-list"><li style="list-style-type:circle">Players must have an active internet connection.</li></ul><ul id="7c6758c1-428b-4699-8648-01ddc1daa553" class="bulleted-list"><li style="list-style-type:circle">The system should bear the load of the requests that arise from the game.</li></ul></li></ul><ul id="11711962-6907-455c-be6c-e32e9a9cfa03" class="bulleted-list"><li style="list-style-type:disc"><strong>Post Condition(s):</strong><ul id="fe42a09a-b59e-414e-9db7-5a22ba6bf5fa" class="bulleted-list"><li style="list-style-type:circle">The game must successfully launch.</li></ul></li></ul><ul id="2e7d9a44-1a75-4d2b-99ce-3a8b82f660be" class="bulleted-list"><li style="list-style-type:disc"><strong>The Alternative Flow of Events:</strong><ul id="554ea021-c568-4e0f-a8ce-e84ccb3d7c52" class="bulleted-list"><li style="list-style-type:circle">Step 1: Players might not connect to the game, the system will wait until everyone is connected. If any one of the players doesn&#x27;t connect, the system will abort the game.</li></ul></li></ul></li></ol><ol type="1" id="e3583b3d-a433-42ff-8b8b-b6a5e06c89ac" class="numbered-list" start="5"><li><strong>Use Case Name: </strong>New Monopoly<strong> </strong>Gameplay<ul id="5887be4d-83b3-4539-8fda-595f2d8ffc56" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose: </strong>After the lobby is created and the game has commenced, users will play a round of New Monopoly.</li></ul><ul id="01983140-f5ef-42a8-8291-5518a0ac7de7" class="bulleted-list"><li style="list-style-type:disc"><strong>Overview:</strong><ol type="1" id="442b415d-b43e-4eb1-936f-c019b413b9e0" class="numbered-list" start="1"><li>All players connect to the game after loading the screen.</li></ol><ol type="1" id="aab8c878-b435-4711-ad61-04dabb38f8e0" class="numbered-list" start="2"><li>The system sets up players&#x27; turns randomly and the first player&#x27;s turn begins.</li></ol><ol type="1" id="cb9274b8-04fc-4ca7-aa19-a0b60c1cab7b" class="numbered-list" start="3"><li>In each turn, two dice are rolled and the player whose turn is up moves according to the rolled dice.</li></ol><ol type="1" id="19814820-f090-45ff-87f8-942b72769be9" class="numbered-list" start="4"><li>The game finishes if either the contenders take down the Monopoly or the Monopoly takes down the contenders.</li></ol></li></ul><ul id="a303fa2b-f858-485c-b736-34b4d7b35bed" class="bulleted-list"><li style="list-style-type:disc"><strong>Actor(s):</strong><ul id="a1390155-8a5a-4d18-93c6-f27c756ba8fc" class="bulleted-list"><li style="list-style-type:circle">Players</li></ul></li></ul><ul id="f5912307-261e-42ec-a069-b71b2aefe712" class="bulleted-list"><li style="list-style-type:disc"><strong>Pre Condition(s):</strong><ul id="05b56466-77e5-4087-b54d-acb369b9c886" class="bulleted-list"><li style="list-style-type:circle">A lobby must be created.</li></ul><ul id="05831fa9-db1d-4106-93dc-1568084d0400" class="bulleted-list"><li style="list-style-type:circle">Players must be connected to the game.</li></ul></li></ul><ul id="4c34c04e-17e8-4c96-b8e3-56e632a28def" class="bulleted-list"><li style="list-style-type:disc"><strong>Post Condition(s):</strong><ul id="40adffd7-7c24-4c2a-bd11-c22d785195cd" class="bulleted-list"><li style="list-style-type:circle">The game has ended in a definite result (Contenders or Monopoly win).</li></ul></li></ul><ul id="c59331c1-97ab-42d2-b8f9-5ec91f015bf2" class="bulleted-list"><li style="list-style-type:disc"><strong>The Alternative Flow of Events:</strong><ul id="48be40bd-cf39-4589-8c27-a9a2af62df87" class="bulleted-list"><li style="list-style-type:circle">Step 3: If a player disconnects from the game, they will be counted as AFK and their turns will be passed immediately after the dice roll.</li></ul></li></ul></li></ol><ol type="1" id="5a2047b4-7750-460a-bf58-c491896ba6b1" class="numbered-list" start="6"><li><strong>Use Case Name: </strong>Finishing a Game<ul id="29f3bf52-0fab-4d72-880e-50ae783770f8" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose: </strong>To find the winner and the loser the game must end.<strong>  </strong>                                                                                                               </li></ul><ul id="fbf946d6-492f-43de-ac29-090cafb5eb71" class="bulleted-list"><li style="list-style-type:disc"><strong>Overview:</strong><ol type="1" id="569806f8-04d6-4b93-9b3b-3c1c03b5445d" class="numbered-list" start="1"><li>When contenders or the monopoly wins, the game will end and the end-game screen will open.</li></ol><ol type="1" id="0e16a22b-4060-452c-94b7-bd43ea21bb7c" class="numbered-list" start="2"><li>In the end-game screen, players will be able to see their performances and which side has won.</li></ol><ol type="1" id="63584667-4a99-4acf-94c0-ceb3e0b548c5" class="numbered-list" start="3"><li>The players will be able to &quot;Play Again&quot; and join a new lobby. </li></ol></li></ul><ul id="5ac42344-143a-4ba0-a8de-a959f6214061" class="bulleted-list"><li style="list-style-type:disc"><strong>Actor(s):</strong><ul id="494177bb-526d-4a0c-95a5-d37b6740b9a0" class="bulleted-list"><li style="list-style-type:circle">Players</li></ul></li></ul><ul id="7345b8be-3472-4531-b7b0-aef02bfad826" class="bulleted-list"><li style="list-style-type:disc"><strong>Pre Condition(s):</strong><ul id="ee7c8e87-0d64-435c-a27d-44a6f833578e" class="bulleted-list"><li style="list-style-type:circle">A game must be finished with one side (The monopoly or the contenders).</li></ul></li></ul><ul id="830f0349-7cce-4c2b-9be7-209438e4d730" class="bulleted-list"><li style="list-style-type:disc"><strong>Post Condition(s):</strong><ul id="c3fe041c-d159-4fc8-8329-0cc72195b6a0" class="bulleted-list"><li style="list-style-type:circle">A list of winners and losers is presented to the players.</li></ul></li></ul><ul id="80de91e7-c241-4229-a883-880608971768" class="bulleted-list"><li style="list-style-type:disc"><strong>The Alternative Flow of Events:</strong><ul id="06982bad-70d3-459b-be88-0c92ef8e9916" class="bulleted-list"><li style="list-style-type:circle">Step 3: If a player disconnects after the game, a new lobby will not be created.</li></ul></li></ul></li></ol><p id="887c1bac-46ca-4f1f-9fd1-15f249b31894" class="">
+</p></div></article></body></html>
